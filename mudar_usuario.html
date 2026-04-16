@@ -1,0 +1,103 @@
+<html lang="PT-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mudar Nome de Usuário</title>
+        <link rel="stylesheet" href="baseStyle.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body>
+        <header>
+        <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="index.html">Sair</a>
+        </nav>
+    </header>
+    <div class="espaco-header"></div>
+    <section class="fundo-imagem">
+
+     <div class="card-form">
+
+        <h1>Mudar Nome de Usuário</h1>
+
+        <h3>Insira Seu Novo Nome de Usuário</h3>
+        <input id="novoNome" class="form-item" type="text" placeholder="Nome de Usuário" required>
+
+        <h3>Digite sua Senha</h3>
+        <input id="senha" class="form-item" type="password" placeholder="Senha" required>
+
+        <div class="botoes">
+            <button class="primary-button" onclick="alterarNome()">Confirmar</button>
+            <button class="primary-button" onclick="cancelar()">Cancelar</button>
+        </div>
+
+     </div>
+
+    </section>
+    <footer>
+        <p>AllFit © 2026</p>
+    </footer>
+    <script>
+     function alterarNome() {
+
+     let novoNome = document.getElementById("novoNome");
+     let senha = document.getElementById("senha");
+
+     let nomeValor = novoNome.value.trim();
+     let senhaValor = senha.value;
+
+    
+     if (nomeValor.length < 3) {
+        alert("O nome deve ter pelo menos 3 caracteres!");
+        novoNome.focus();
+        return;
+     }
+
+     if (nomeValor.length > 20) {
+        alert("O nome deve ter no máximo 20 caracteres!");
+        novoNome.focus();
+        return;
+     }
+
+    
+     if (localStorage.getItem(nomeValor)) {
+        alert("Esse nome de usuário já existe!");
+        novoNome.focus();
+        return;
+     }
+
+    
+     let usuarioAtualEmail = localStorage.key(0);
+     let usuarioAtual = JSON.parse(localStorage.getItem(usuarioAtualEmail));
+
+     if (!usuarioAtual || usuarioAtual.senha !== senhaValor) {
+        alert("Senha incorreta!");
+        senha.focus();
+        return;
+     }
+
+     
+     usuarioAtual.nome = nomeValor;
+
+     localStorage.setItem(usuarioAtualEmail, JSON.stringify(usuarioAtual));
+
+     alert("Nome alterado com sucesso!");
+
+    
+     window.location.href = "usuario.html";
+     }
+
+     
+     function cancelar() {
+     let confirmar = confirm("Deseja cancelar a operação?");
+
+     if (confirmar) {
+        window.location.href = "usuario.html";
+     }
+     }
+    </script>
+    </body>
+    
+
+</html>

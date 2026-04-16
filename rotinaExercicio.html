@@ -1,0 +1,146 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>AllFit</title>
+    <link rel="stylesheet" href="baseStyle.css">
+    <!-- <link rel="stylesheet" href="exercicioStyle.css"> -->
+</head>
+<body>
+
+    <header>
+        <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="usuario.html">Configuração</a>
+            <a href="index.html">Sair</a>
+        </nav>
+    </header>
+
+    <section class="banner" id="main">
+        <h1>Crie uma rotina de exercícios <i><span class="title-glow">personalizada</span></i></h1>
+        <p>Treinos feitos sob medida para você.</p>
+    </section>
+
+    <section class="formulario">
+        <h2>Questionário de Customização (?)</h2>
+        <form>
+            <label>Possuí alguma dificuldade de mobilidade?</label><br>
+            <input type="radio" name="tem_difMobilidade" value="sim"> Sim
+            <input type="radio" name="tem_difMobilidade" value="nao"> Não
+            <br>
+            <br>
+
+            <section class="center-form hidden-list" id="listaDificuldades" style="display: none;">
+                <label>
+                    <input type="checkbox" name="dif_mobilidade" value="joelho">
+                    Dor no joelho
+                </label><br>
+    
+                <label>
+                    <input type="checkbox" name="dif_mobilidade" value="coluna">
+                    Problemas na coluna
+                </label><br>
+    
+                <label>
+                    <input type="checkbox" name="dif_mobilidade" value="ombro">
+                    Lesão no ombro
+                </label><br>
+    
+                <label>
+                    <input type="checkbox" name="dif_mobilidade" value="equilibrio">
+                    Dificuldade de equilíbrio
+                </label><br>
+    
+                <!-- <label>
+                    <input type="checkbox" id="outrosCheck">
+                    Outros:
+                </label>
+                    <input type="text" id="outrosTexto" disabled> -->
+            </section>
+            <br><br>
+            <label>Qual tipo de exercício quer fazer?</label><br>
+            <select class="form-item" required>
+                <option value="" disabled selected hidden>Selecione uma opção</option>
+                <option>Yoga</option>
+                <option>Caminhada/Corrida</option>
+                <option>Aeróbico</option>
+                <option>Anaeróbico</option>
+                <option>Calistenia</option>
+            </select><br>
+            <br>
+            
+            <label>Dias disponíveis</label><br>
+            <section class="center-form">
+                <input type="checkbox" name="dias" value="segunda"> Segunda<br>
+                <input type="checkbox" name="dias" value="terca"> Terça<br>
+                <input type="checkbox" name="dias" value="quarta"> Quarta<br>
+                <input type="checkbox" name="dias" value="quinta"> Quinta<br>
+                <input type="checkbox" name="dias" value="sexta"> Sexta<br>
+
+                <br><br>
+            </section>
+
+            <label>Horário disponível:</label><br><br>            
+            De: <input style="width: 120px;" class="form-item" type="time" name="inicio">
+            <br>
+            Até: <input style="width: 120px;" class="form-item" type="time" name="fim">
+
+            <br><br>
+
+            <br>
+            <label>Duração das sessões:</label><br>
+
+            <section class="center-form">
+                <input type="radio" name="duracao" value="30"> 30 min<br>
+                <input type="radio" name="duracao" value="60"> 1 hora<br>
+                <input type="radio" name="duracao" value="120"> 2 horas<br>
+                <br>
+            </section>
+
+            <br>
+            <label>Local para execução dos exercícios:</label>
+            <br>
+
+            <select class="form-item" name="local" required>
+                <option value="" disabled selected hidden>Selecione uma opção</option>
+                <option value="casa">Em casa</option>
+                <option value="academia">Academia</option>
+                <option value="ar_livre">Ao ar livre</option>
+                <!-- <option value="outro">Outro</option> -->
+            </select>
+
+            <br><br>
+
+            <label>Duração do ciclo:</label><br>
+
+            <input style="width: 140px;" class="form-item" type="number" name="dias_treino" min="1" max="7" placeholder="Dias de treino"> 
+            /
+            <input style="width: 140px;" class="form-item" type="number" name="dias_total" min="1" max="7" placeholder="Total de dias">
+
+            <br><small>Ex: 3 / 7 (treina 3 dias em um ciclo de 7 dias)</small>
+            <br>
+            <br>
+
+            <button type="submit" class="primary-button">Gerar treino</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>AllFit © 2026</p>
+    </footer>
+</body>
+<script>
+    const radios = document.querySelectorAll('input[name="tem_difMobilidade"]');
+    const lista = document.getElementById("listaDificuldades");
+
+    radios.forEach(radio => {
+    radio.addEventListener("change", () => {
+        if (radio.value === "sim") {
+        lista.style.display = "block";
+        } else {
+        lista.style.display = "none";
+        }
+    });
+    });
+</script>
+</html>

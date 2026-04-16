@@ -1,0 +1,68 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>AllFit - Login</title>
+    <link rel="stylesheet" href="baseStyle.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="cadastro.html">Cadastro</a>
+            
+        </nav>
+    </header>
+
+    <div class="espaco-header"></div>
+
+<section class="fundo-imagem">
+
+    <div class="card-form">
+
+        <h1>Entrar</h1>
+
+        <input class="form-item" type="email" id="email" placeholder="E-mail" />
+        <input class="form-item" type="password" id="senha" placeholder="Senha" />
+
+        <div class="botoes">
+            <button class="button-88" onclick="login()">Entrar</button>
+        </div>
+
+        <p>Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+
+    </div>
+
+</section>
+
+    <footer>
+        <p>AllFit © 2026</p>
+    </footer>
+
+    <script>
+        function login() {
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+
+            if (!email || !senha) {
+                alert('Preencha todos os campos!');
+                return;
+            }
+
+            const usuario = JSON.parse(localStorage.getItem(email));
+
+            if (!usuario) {
+                alert('E-mail não cadastrado. Redirecionando para o cadastro...');
+                window.location.href = 'cadastro.html';
+            } else if (usuario.senha !== senha) {
+                alert('Senha incorreta.');
+            } else {
+                alert('Bem-vindo(a), ' + usuario.nome + '!');
+                window.location.href = 'usuario_logado.html';
+            }
+        }
+    </script>
+
+</body>
+</html>

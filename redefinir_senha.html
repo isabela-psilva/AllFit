@@ -1,0 +1,117 @@
+<html lang="PT-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Redefinir Senha</title>
+        <link rel="stylesheet" href="baseStyle.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body>
+        <header>
+        <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="index.html">Sair</a>
+        </nav>
+    </header>
+    <div class="espaco-header"></div>
+    <section class="fundo-imagem">
+
+     <div class="card-form">
+
+        <h1>Redefinir Senha</h1>
+
+        <h3>Insira Sua Senha Atual</h3>
+        <input id="senhaAtual" class="form-item" type="text" placeholder="Senha atual" required>
+
+        <h3>Insira sua Nova Senha</h3>
+        <input id="novaSenha" class="form-item" type="text" placeholder="Nova senha" required>
+
+        <h3>Repita sua Nova Senha</h3>
+        <input id="confirmarSenha" class="form-item" type="text" placeholder="Repita a senha" required>
+
+        <div class="botoes">
+            <button class="primary-button" onclick="redefinirSenha()">Confirmar</button>
+            <button class="primary-button" onclick="cancelar()">Cancelar</button>
+        </div>
+
+     </div>
+
+    </section>
+    <footer>
+        <p>AllFit © 2026</p>
+    </footer>
+    <script>
+     function redefinirSenha() {
+
+     let senhaAtual = document.getElementById("senhaAtual");
+     let novaSenha = document.getElementById("novaSenha");
+     let confirmarSenha = document.getElementById("confirmarSenha");
+
+     let atual = senhaAtual.value;
+     let nova = novaSenha.value;
+     let confirmar = confirmarSenha.value;
+
+     
+     let usuarioEmail = localStorage.key(0);
+     let usuario = JSON.parse(localStorage.getItem(usuarioEmail));
+
+    
+     if (!usuario || usuario.senha !== atual) {
+        alert("Senha atual incorreta!");
+        senhaAtual.focus();
+        return;
+     }
+
+    
+     if (nova.length < 8) {
+        alert("A senha deve ter no mínimo 8 caracteres!");
+        novaSenha.focus();
+        return;
+     }
+
+     
+     if (nova.length > 25) {
+        alert("A senha deve ter no máximo 25 caracteres!");
+        novaSenha.focus();
+        return;
+     }
+
+     
+     let forte = /^(?=.*[A-Za-z])(?=.*\d).+$/;
+     if (!forte.test(nova)) {
+        alert("Senha fraca! Use letras e números.");
+        novaSenha.focus();
+        return;
+     }
+
+     
+     if (nova !== confirmar) {
+        alert("As senhas não coincidem!");
+        confirmarSenha.focus();
+        return;
+     }
+
+    
+     usuario.senha = nova;
+     localStorage.setItem(usuarioEmail, JSON.stringify(usuario));
+
+     alert("Senha redefinida com sucesso!");
+
+     
+     window.location.href = "usuario.html";
+     }
+
+     
+     function cancelar() {
+     let confirmar = confirm("Deseja cancelar a operação?");
+
+     if (confirmar) {
+        window.location.href = "usuario.html";
+     }
+     }
+    </script>
+    </body>
+    
+
+</html>

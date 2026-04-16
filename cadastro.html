@@ -1,0 +1,71 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>AllFit - Cadastro</title>
+    <link rel="stylesheet" href="baseStyle.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <section class="fundo-imagem">
+
+    <div class="card-form">
+
+        <h1>Criar Conta</h1>
+
+        <input class="form-item" type="text" id="nome" placeholder="Nome completo" />
+        <input class="form-item" type="email" id="email" placeholder="E-mail" />
+        <input class="form-item" type="password" id="senha" placeholder="Senha" />
+        <input class="form-item" type="password" id="confirmarSenha" placeholder="Confirmar senha" />
+
+        <div class="botoes">
+            <button class="button-88" onclick="cadastrar()">Cadastrar</button>
+        </div>
+
+        <p>Já tem conta? <a href="login.html">Entrar</a></p>
+
+    </div>
+
+</section>
+
+    <footer>
+        <p>AllFit © 2026</p>
+    </footer>
+
+    <script>
+        function cadastrar() {
+            const nome           = document.getElementById('nome').value;
+            const email          = document.getElementById('email').value;
+            const senha          = document.getElementById('senha').value;
+            const confirmarSenha = document.getElementById('confirmarSenha').value;
+
+            if (!nome || !email || !senha || !confirmarSenha) {
+                alert('Preencha todos os campos!');
+                return;
+            }
+
+            if (senha !== confirmarSenha) {
+                alert('As senhas não coincidem!');
+                return;
+            }
+
+            if (localStorage.getItem(email)) {
+                alert('Este e-mail já está cadastrado.');
+                return;
+            }
+
+            localStorage.setItem(email, JSON.stringify({ nome, senha }));
+            alert('Cadastro realizado com sucesso! Faça o login.');
+            window.location.href = 'login.html';
+        }
+    </script>
+
+</body>
+</html>

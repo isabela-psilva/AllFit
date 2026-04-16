@@ -1,0 +1,99 @@
+<html lang="PT-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Deletar Conta</title>
+        <link rel="stylesheet" href="baseStyle.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body>
+        <header>
+        <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="index.html">Sair</a>
+        </nav>
+    </header>
+    <div class="espaco-header"></div>
+    <section class="fundo-imagem">
+
+     <div class="card-form">
+
+        <h1>Deletar Conta</h1>
+
+        <h3>Você tem certeza de que quer deletar sua conta?</h3>
+
+        <!-- <div class="checkbox-group"> -->
+            <label><input id="confirmacao" type="checkbox"> Sim</label>
+            <!-- <label><input type="checkbox"> Não</label> -->
+        <!-- </div> -->
+
+        <h3>Insira Sua Senha</h3>
+
+        <input id="senha" class="form-item" type="password" placeholder="Senha">
+
+        <div class="botoes">
+            <button class="primary-button" onclick="deletarConta()">Confirmar</button>
+            <button class="primary-button" onclick="cancelar()">Cancelar</button>
+        </div>
+
+     </div>
+
+    </section>
+    <footer>
+        <p>AllFit © 2026</p>
+    </footer>
+    <script>
+     function deletarConta() {
+
+     let confirmacao = document.getElementById("confirmacao");
+     let senha = document.getElementById("senha");
+
+     let senhaValor = senha.value;
+
+     
+     if (!confirmacao.checked) {
+        alert("Você precisa confirmar que deseja deletar a conta!");
+        return;
+     }
+
+     
+     let usuarioEmail = localStorage.key(0);
+     let usuario = JSON.parse(localStorage.getItem(usuarioEmail));
+
+     // 🔴 EXCEÇÃO 2.a1 (senha incorreta)
+     if (!usuario || usuario.senha !== senhaValor) {
+        alert("Senha incorreta!");
+        senha.focus();
+        return;
+     }
+
+    
+     let certeza = confirm("Tem certeza absoluta que deseja excluir sua conta?");
+
+     if (!certeza) {
+        return;
+     }
+
+    
+     localStorage.removeItem(usuarioEmail);
+
+     alert("Conta deletada com sucesso!");
+
+    
+     window.location.href = "index.html";
+     }
+
+     
+     function cancelar() {
+     let confirmar = confirm("Deseja cancelar a operação?");
+
+     if (confirmar) {
+        window.location.href = "usuario.html";
+     }
+     }
+    </script>
+    </body>
+    
+
+</html>

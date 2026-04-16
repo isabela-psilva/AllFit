@@ -1,0 +1,65 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>AllFit</title>
+    <link rel="stylesheet" href="baseStyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <header>
+        <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="login.html">Login</a> <!--colocar pagina login-->
+            <a href="cadastro.html">Cadastro</a> <!--colocar pagina cadastro-->
+            <!-- Deixei esse por enquanto -->
+            <a href="login.html">Criar Plano</a> <!--colocar pagina do login-->
+        </nav>
+    </header>
+
+    <section class="banner-main" id="main">
+        <div class="overlay">
+         <h1>Transforme sua saúde com planos personalizados</h1>
+         <p>Dietas e exercícios de acordo com seu objetivo.</p>
+         <a href="login.html" class="primary-button">Começar Agora</a> 
+        </div>
+    </section>
+<!--colocar todos os cards para irem ao login-->
+    <section class="objetivos">
+        <div class="card">Melhorar Alimentação</div>
+        <div class="card">Ganhar Massa Corporal</div>
+        <div class="card">Emagrecer</div>
+        <div class="card">Plano Completo</div>
+    </section>
+
+    <section class="formulario">
+        <h2>Monte seu plano</h2>
+        <form>
+            <input class="form-item" type="text" placeholder="Nome" required><br>
+            <input class="form-item" type="number" placeholder="Idade" min="0" max="110" required><br>
+            <input class="form-item" type="number" placeholder="Peso" min="30" max="300" required><br>
+            <input class="form-item" type="number" placeholder="Altura" min="100" max="220" required><br>
+
+            <br>
+            <label>Escolha seu objetivo</label><br>
+            <select class="form-item" required>
+                <option value="" disabled selected hidden>Selecione uma opção</option>
+                <option>Melhorar alimentação</option>
+                <option>Ganhar massa</option>
+                <option>Emagrecer</option>
+            </select>
+            <div class="botoes">
+                <a href="login.html" class="primary-button">Gerar Plano</a>
+            </div>
+
+            
+        </form>
+    </section>
+
+    <footer>
+        <p>AllFit © 2026</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<html lang="PT-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Usuário</title>
+        <link rel="stylesheet" href="baseStyle.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script language="JavaScript">
+            let escolha = "";
+            function validarLocal(){
+                let local = document.getElementById("local").value;
+                if(local.length < 3){
+                    document.getElementById("erroLocal").innerText ="Local Inválido!";
+                    return;
+                }
+                document.getElementById("erroLocal").innerText = "";
+                document.getElementById("conteudo").style.display = "flex";
+            }
+
+        </script>
+    </head>
+    <body>
+        <header>
+         <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
+            
+        
+         <nav>
+            <a href="index.html">Início</a>
+            <a href="perfil.html">Perfil Ideal</a> <!--colocar pagina perfil ideal-->
+            <a href="usuario.html">Configuração</a> 
+            <a href="index.html">Sair</a>
+         </nav>
+            
+        
+        </header>
+    <div class="espaco-header"></div>    
+    <section class="formulario">
+
+    <h2>Defina sua localização</h2>
+    <input class="form-item" type="text" id="local" placeholder="Digite sua Cidade"><br>
+    <button class="primary-button" onclick="validarLocal()">Confirmar</button>
+    <p id="erroLocal"></p>
+
+    
+    <div id="conteudo" style="display: none;">
+
+        <h2>Rotinas sugeridas</h2>
+
+        <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
+            <div class="card">Caminhada diária</div>
+            <div class="card">Dieta equilibrada</div>
+            <div class="card">Treino leve</div>
+        </div>
+
+        <h2 style="margin-top:40px;">Escolha por onde começar</h2>
+
+        <div style="display:flex; gap:20px;">
+            <a href="dieta.html" class="card">Dieta</a>
+            <a href="rotinaExercicio.html" class="card">Exercício</a>
+        </div>
+    </div>
+
+    <br>
+    </section>
+
+    <footer>
+        <p>AllFit © 2026</p>
+    </footer>
+    </body>
+</html>

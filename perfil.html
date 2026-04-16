@@ -1,0 +1,168 @@
+
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil Ideal</title>
+    <link rel="stylesheet" href="baseStyle.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="usuario.html">Configuração</a>
+            <a href="index.html">Sair</a>
+        </nav>
+    </header>
+
+    
+    <section class="banner">
+        <h1>Monte seu <span class="title-glow">Perfil Ideal</span></h1>
+        <p>Personalize sua experiência no AllFit</p>
+    </section>
+
+    
+    <section class="formulario">
+        <h2>Dados Pessoais</h2>
+
+        <form>
+
+            <label>Nome:</label>
+            <input class="form-item" type="text" placeholder="Seu nome" required>
+            <br>
+
+            <label>Idade:</label>
+            <input id="idade" class="form-item" type="number" min="18" max="75" placeholder="Sua idade" required>
+            <br>
+
+            <label>Altura:</label>
+            <input id="altura" class="form-item" type="number" step="0.01" placeholder="Ex: 1.75" required>
+            <br>
+
+            <label>Peso:</label>
+            <input id="peso" class="form-item" type="number" step="0.01" placeholder="Ex: 70kg" required>
+            <br>
+
+            <br>
+
+            <label>Possui restrição alimentar?</label><br>
+            <input type="radio" name="restAlimentar" value="sim"> Sim
+            <input type="radio" name="restAlimentar" value="nao"> Não
+
+            <br><br>
+
+            <label>Possui restrição física?</label><br>
+            <input type="radio" name="restFisica" value="sim"> Sim
+            <input type="radio" name="restFisica" value="nao"> Não
+
+            <br><br>
+
+            <label>IMC:</label>
+            <input id="imc" class="form-item" type="text" readonly placeholder="Calculado automaticamente">
+
+            <br><br>
+
+            <div class="botoes">
+               <p id="resultadoIMC"></p>
+                <button type="button" class="primary-button" onclick="calcularIMC()">Calcular IMC</button>
+                <button type="button" class="primary-button" onclick="salvarPerfil()">Salvar</button>
+            </div>
+
+        </form>
+    </section>
+
+    <footer>
+        <p>AllFit © 2026</p>
+    </footer>
+   <script>
+      function calcularIMC() {
+
+    let idade = document.getElementById("idade");
+    let peso = document.getElementById("peso");
+    let altura = document.getElementById("altura");
+    let imcCampo = document.getElementById("imc");
+
+    
+    if (idade.value < 18 || idade.value > 75) {
+        alert("Idade inválida!");
+        idade.focus();
+        return;
+    }
+
+    if (peso.value < 30 || peso.value > 300) {
+        alert("Peso inválido!");
+        peso.focus();
+        return;
+    }
+
+    if (altura.value < 1.2 || altura.value > 2.2) {
+        alert("Altura inválida!");
+        altura.focus();
+        return;
+    }
+
+    
+    let imc = peso.value / (altura.value * altura.value);
+    imc = imc.toFixed(2);
+
+    
+    let biotipo = "";
+    if (imc < 18.5) {
+        biotipo = "Abaixo do peso";
+    } else if (imc < 25) {
+        biotipo = "Peso normal";
+    } else if (imc < 30) {
+        biotipo = "Sobrepeso";
+    } else if (imc < 35) {
+        biotipo = "Obesidade Grau I";
+    } else if (imc < 40) {
+        biotipo = "Obesidade Grau II";
+    } else {
+        biotipo = "Obesidade Grau III";
+    }
+
+    
+    imcCampo.value = imc + " (" + biotipo + ")";
+
+    
+    let resultado = document.getElementById("resultadoIMC");
+    resultado.innerText = "IMC: " + imc + " - Biotipo: " + biotipo + " ✅";
+    resultado.style.color = "lightgreen";
+
+    
+    let sugestao = "";
+    if (imc < 18.5) {
+        sugestao = "Ganhar massa";
+    } else if (imc < 25) {
+        sugestao = "Manter alimentação saudável";
+    } else {
+        sugestao = "Emagrecer";
+    }
+
+    alert("Sugestão: " + sugestao);
+    }
+
+
+    
+    function salvarPerfil() {
+
+    let restAlimentar = document.querySelector('input[name="restAlimentar"]:checked');
+    let restFisica = document.querySelector('input[name="restFisica"]:checked');
+
+    if (!restAlimentar || !restFisica) {
+        alert("Selecione todas as opções!");
+        return;
+    }
+
+    alert("Perfil salvo com sucesso!");
+
+    
+    window.location.href ="usuario_logado.html";
+    }
+   </script>
+
+   
+
+</body>
+</html>
