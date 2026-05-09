@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <title>AllFit - Cadastro</title>
     <link rel="stylesheet" href="baseStyle.css">
+    <script src="script.js"></script>
 </head>
 <body>
 
@@ -26,7 +27,15 @@
         <input class="form-item" type="password" id="confirmarSenha" placeholder="Confirmar senha" />
 
         <div class="botoes">
-            <button class="button-88" onclick="cadastrar()">Cadastrar</button>
+            <button class="primary-button" onclick="cadastrar()">Cadastrar</button>
+        </div>
+        <div id="meuModal" class="modal-container" style="display: none;">
+            <div class="modal-box">
+                <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
+                <br><p></p>
+                <p id="modalTexto">Mensagem da operação.</p>
+                <input type="button" id="btnModalOk" class="primary-button" value="Ok">
+            </div>
         </div>
 
         <p>Já tem conta? <a href="login.html">Entrar</a></p>
@@ -47,23 +56,22 @@
             const confirmarSenha = document.getElementById('confirmarSenha').value;
 
             if (!nome || !email || !senha || !confirmarSenha) {
-                alert('Preencha todos os campos!');
+                exibirModal("Atenção!", "Preencha todos os campos!");
                 return;
             }
 
             if (senha !== confirmarSenha) {
-                alert('As senhas não coincidem!');
+                exibirModal("Erro!", "As senhas não coincidem!");
                 return;
             }
 
             if (localStorage.getItem(email)) {
-                alert('Este e-mail já está cadastrado.');
+                exibirModal("Atenção!", "Este e-mail já está cadastrado.");
                 return;
             }
 
             localStorage.setItem(email, JSON.stringify({ nome, senha }));
-            alert('Cadastro realizado com sucesso! Faça o login.');
-            window.location.href = 'login.html';
+            exibirModal("Sucesso!", "Cadastro realizado com sucesso! Faça o login.", "login.html");
         }
     </script>
 

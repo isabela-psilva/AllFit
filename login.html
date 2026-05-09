@@ -2,6 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <title>AllFit - Login</title>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="baseStyle.css">
 </head>
 <body>
@@ -27,7 +28,15 @@
         <input class="form-item" type="password" id="senha" placeholder="Senha" />
 
         <div class="botoes">
-            <button class="button-88" onclick="login()">Entrar</button>
+            <button class="primary-button" onclick="login()">Entrar</button>
+        </div>
+        <div id="meuModal" class="modal-container" style="display: none;">
+            <div class="modal-box">
+                <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
+                <br>
+                <p id="modalTexto">Mensagem da operação.</p>
+                <input type="button" id="btnModalOk" class="primary-button" value="Ok">
+            </div>
         </div>
 
         <p>Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
@@ -46,20 +55,18 @@
             const senha = document.getElementById('senha').value;
 
             if (!email || !senha) {
-                alert('Preencha todos os campos!');
+                exibirModal("Atenção!", "Preencha todos os campos!");
                 return;
             }
 
             const usuario = JSON.parse(localStorage.getItem(email));
 
             if (!usuario) {
-                alert('E-mail não cadastrado. Redirecionando para o cadastro...');
-                window.location.href = 'cadastro.html';
+                exibirModal("Ops...", "E-mail não cadastrado. Redirecionando para o cadastro...", "cadastro.html");
             } else if (usuario.senha !== senha) {
-                alert('Senha incorreta.');
+                exibirModal("Erro!", "Senha incorreta!");
             } else {
-                alert('Bem-vindo(a), ' + usuario.nome + '!');
-                window.location.href = 'usuario_logado.html';
+                exibirModal("Olá!", "Bem-vindo(a), " + usuario.nome + "!", "dashboard.html");
             }
         }
     </script>

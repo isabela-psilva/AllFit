@@ -20,22 +20,35 @@
 
     <section class="banner-main" id="main">
         <div class="overlay">
-         <h1>Transforme sua saúde com planos personalizados</h1>
-         <p>Dietas e exercícios de acordo com seu objetivo.</p>
+         <h1>Transforme sua saúde com planos <span class="title-glow">personalizados</span></h1>
+         <!-- <p>Dietas e exercícios de acordo com seu objetivo.</p> -->
          <a href="login.html" class="primary-button">Começar Agora</a> 
         </div>
     </section>
 <!--colocar todos os cards para irem ao login-->
     <section class="objetivos">
-        <div class="card">Melhorar Alimentação</div>
-        <div class="card">Ganhar Massa Corporal</div>
-        <div class="card">Emagrecer</div>
-        <div class="card">Plano Completo</div>
+        <div class="card">
+            <img src="diet.png" alt="Alimentação">
+            <p>Melhorar Alimentação</p>
+        </div>
+        <div class="card">
+            <img src="dumbbell.png" alt="Massa Corporal">
+            <p>Ganhar Massa Corporal</p>
+        </div>
+        <div class="card">
+            <img src="fire.png" alt="Emagrecer">
+            <p>Emagrecer</p>
+        </div>
+        <div class="card">
+            <img src="clipboard.png" alt="Plano Completo">
+            <p>Plano Completo</p>
+        </div>
     </section>
 
-    <section class="formulario">
-        <h2>Monte seu plano</h2>
-        <form>
+    <section class="fundo-img">
+        <div class="form-1">
+            <h2>Monte seu plano</h2>
+            <form>
             <input class="form-item" type="text" placeholder="Nome" required><br>
             <input class="form-item" type="number" placeholder="Idade" min="0" max="110" required><br>
             <input class="form-item" type="number" placeholder="Peso" min="30" max="300" required><br>
@@ -43,6 +56,7 @@
 
             <br>
             <label>Escolha seu objetivo</label><br>
+            <br>
             <select class="form-item" required>
                 <option value="" disabled selected hidden>Selecione uma opção</option>
                 <option>Melhorar alimentação</option>
@@ -54,7 +68,8 @@
             </div>
 
             
-        </form>
+            </form>
+        </div>    
     </section>
 
     <footer>

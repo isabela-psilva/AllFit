@@ -3,6 +3,7 @@
         <meta charset="UTF-8">
         <title>Dieta</title>
         <link rel="stylesheet" type="text/css" href="baseStyle.css">
+        <script src="script.js"></script>
         <script lang="JavaScript">
             function Confirmar() {
 
@@ -35,29 +36,25 @@
                valor < 100000 &&
                calorias > 99 &&
                calorias < 100000) {
-               alert("Dieta gerada com sucesso!");
-                   window.location="index.html";
+               exibirModal("Sucesso!", "Dieta gerada com sucesso!", "index.html");
                    } else {
                     if (valor < 10 || valor > 99999) {
-                    alert("Erro! Valor em dinheiro inválido!");
+                    exibirModal("Erro!", "Valor em dinheiro inválido!", null, document.frm_dieta.txt_valor);
                     document.frm_dieta.txt_valor.value="";
-                    document.frm_dieta.txt_valor.focus();
                 } else {
                     if (calorias < 100 || calorias > 99999) {
-                        alert("Erro! Meta de calorias inválida!");
+                        exibirModal("Erro!", "Meta de calorias inválida!", null, document.frm_dieta.txt_calorias);
                         document.frm_dieta.txt_calorias.value="";
-                        document.frm_dieta.txt_calorias.focus();
                     }
                 }        
             }     
         } else {
-            alert("Erro! Preencha todos os campos!");
+            exibirModal("Atenção!", "Preencha todos os campos!");
         }
     }
 
         function Cancelar() {
-            alert("Geração de dieta cancelada");
-            window.location="usuario_logado.html";    
+            exibirModal("Cancelado", "Geração de dieta cancelada", "usuario_logado.html");    
         }
         </script>
     </head>
@@ -65,8 +62,8 @@
         <header>
             <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
             <nav>
-                <a href="index.html">Início</a>
-                <a href="usuario.html">Configurações</a>
+                <a href="dashboard.html">Início</a>
+                <a href="configuracao.html">Configurações</a>
                 <a href="index.html">Sair</a>
             </nav>
         </header>
@@ -174,7 +171,15 @@
                     </section>
                     <br>
                     <input class="primary-button" name="btn_confirmar" type="button" value="Finalizar" onClick="Confirmar()">
-                    <input class="primary-button" name="btn_cancelar" type="button" value="Cancelar" onClick="Cancelar()">   
+                    <input class="primary-button" name="btn_cancelar" type="button" value="Cancelar" onClick="Cancelar()"> 
+                    <div id="meuModal" class="modal-container" style="display: none;">
+                        <div class="modal-box">
+                            <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
+                            <br><p></p>
+                            <p id="modalTexto">Mensagem da operação.</p>
+                            <input type="button" id="btnModalOk" class="primary-button" value="Ok">
+                        </div>
+                    </div>  
                 </section>
             </form>     
         </div>

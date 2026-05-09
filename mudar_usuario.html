@@ -3,6 +3,7 @@
         <meta charset="UTF-8">
         <title>Mudar Nome de Usuário</title>
         <link rel="stylesheet" href="baseStyle.css">
+        <script src="script.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     </head>
@@ -10,7 +11,7 @@
         <header>
         <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
         <nav>
-            <a href="index.html">Início</a>
+            <a href="dashboard.html">Início</a>
             <a href="index.html">Sair</a>
         </nav>
     </header>
@@ -31,6 +32,14 @@
             <button class="primary-button" onclick="alterarNome()">Confirmar</button>
             <button class="primary-button" onclick="cancelar()">Cancelar</button>
         </div>
+        <div id="meuModal" class="modal-container" style="display: none;">
+            <div class="modal-box">
+                <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
+                <br><p></p>
+                <p id="modalTexto">Mensagem da operação.</p>
+                <input type="button" id="btnModalOk" class="primary-button" value="Ok">
+            </div>
+        </div>
 
      </div>
 
@@ -49,21 +58,18 @@
 
     
      if (nomeValor.length < 3) {
-        alert("O nome deve ter pelo menos 3 caracteres!");
-        novoNome.focus();
+        exibirModal("Atenção!", "O nome deve ter pelo menos 3 caracteres!", null, novoNome);
         return;
      }
 
      if (nomeValor.length > 20) {
-        alert("O nome deve ter no máximo 20 caracteres!");
-        novoNome.focus();
+        exibirModal("Atenção!", "O nome deve ter no máximo 20 caracteres!", null, novoNome);
         return;
      }
 
     
      if (localStorage.getItem(nomeValor)) {
-        alert("Esse nome de usuário já existe!");
-        novoNome.focus();
+        exibirModal("Erro!", "Esse nome de usuário já existe!", null, novoNome);
         return;
      }
 
@@ -72,8 +78,7 @@
      let usuarioAtual = JSON.parse(localStorage.getItem(usuarioAtualEmail));
 
      if (!usuarioAtual || usuarioAtual.senha !== senhaValor) {
-        alert("Senha incorreta!");
-        senha.focus();
+        exibirModal("Erro!", "Senha incorreta!", null, senha);
         return;
      }
 
@@ -82,10 +87,7 @@
 
      localStorage.setItem(usuarioAtualEmail, JSON.stringify(usuarioAtual));
 
-     alert("Nome alterado com sucesso!");
-
-    
-     window.location.href = "usuario.html";
+     exibirModal("Sucesso!", "Nome alterado com sucesso!", "configuracao.html");
      }
 
      
@@ -93,7 +95,7 @@
      let confirmar = confirm("Deseja cancelar a operação?");
 
      if (confirmar) {
-        window.location.href = "usuario.html";
+        window.location.href = "configuracao.html";
      }
      }
     </script>

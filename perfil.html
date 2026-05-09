@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Perfil Ideal</title>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="baseStyle.css">
 </head>
 <body>
@@ -10,8 +11,8 @@
     <header>
         <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
         <nav>
-            <a href="index.html">Início</a>
-            <a href="usuario.html">Configuração</a>
+            <a href="dashboard.html">Início</a>
+            <a href="configuracao.html">Configuração</a>
             <a href="index.html">Sair</a>
         </nav>
     </header>
@@ -68,6 +69,14 @@
                 <button type="button" class="primary-button" onclick="calcularIMC()">Calcular IMC</button>
                 <button type="button" class="primary-button" onclick="salvarPerfil()">Salvar</button>
             </div>
+            <div id="meuModal" class="modal-container" style="display: none;">
+                <div class="modal-box">
+                    <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
+                    <br><p></p>
+                    <p id="modalTexto">Mensagem da operação.</p>
+                    <input type="button" id="btnModalOk" class="primary-button" value="Ok">
+                </div>
+            </div>
 
         </form>
     </section>
@@ -85,20 +94,17 @@
 
     
     if (idade.value < 18 || idade.value > 75) {
-        alert("Idade inválida!");
-        idade.focus();
+        exibirModal("Ops!", "Idade inválida!", null, idade);
         return;
     }
 
     if (peso.value < 30 || peso.value > 300) {
-        alert("Peso inválido!");
-        peso.focus();
+        exibirModal("Ops!", "Peso inválido!", null, peso);
         return;
     }
 
     if (altura.value < 1.2 || altura.value > 2.2) {
-        alert("Altura inválida!");
-        altura.focus();
+        exibirModal("Ops!", "Altura inválida!", null, altura);
         return;
     }
 
@@ -140,7 +146,7 @@
         sugestao = "Emagrecer";
     }
 
-    alert("Sugestão: " + sugestao);
+    exibirModal("Sugestão", "De acordo com seu biotipo, sugerimos '" + sugestao + "'");
     }
 
 
@@ -151,14 +157,11 @@
     let restFisica = document.querySelector('input[name="restFisica"]:checked');
 
     if (!restAlimentar || !restFisica) {
-        alert("Selecione todas as opções!");
+        exibirModal("Atenção!", "Selecione todas as opções!");
         return;
     }
 
-    alert("Perfil salvo com sucesso!");
-
-    
-    window.location.href ="usuario_logado.html";
+    exibirModal("Sucesso!", "Perfil salvo com sucesso!", "usuario_logado.html");
     }
    </script>
 

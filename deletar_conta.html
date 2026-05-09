@@ -3,6 +3,7 @@
         <meta charset="UTF-8">
         <title>Deletar Conta</title>
         <link rel="stylesheet" href="baseStyle.css">
+        <script src="script.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     </head>
@@ -10,7 +11,7 @@
         <header>
         <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
         <nav>
-            <a href="index.html">Início</a>
+            <a href="dashboard.html">Início</a>
             <a href="index.html">Sair</a>
         </nav>
     </header>
@@ -36,6 +37,14 @@
             <button class="primary-button" onclick="deletarConta()">Confirmar</button>
             <button class="primary-button" onclick="cancelar()">Cancelar</button>
         </div>
+        <div id="meuModal" class="modal-container" style="display: none;">
+            <div class="modal-box">
+                <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
+                <br><p></p>
+                <p id="modalTexto">Mensagem da operação.</p>
+                <input type="button" id="btnModalOk" class="primary-button" value="Ok">
+            </div>
+        </div>
 
      </div>
 
@@ -53,7 +62,7 @@
 
      
      if (!confirmacao.checked) {
-        alert("Você precisa confirmar que deseja deletar a conta!");
+        exibirModal("Atenção!", "Você precisa confirmar que deseja deletar a conta!");
         return;
      }
 
@@ -63,8 +72,7 @@
 
      // 🔴 EXCEÇÃO 2.a1 (senha incorreta)
      if (!usuario || usuario.senha !== senhaValor) {
-        alert("Senha incorreta!");
-        senha.focus();
+        exibirModal("Erro!", "Senha incorreta!", null, senha);
         return;
      }
 
@@ -78,10 +86,7 @@
     
      localStorage.removeItem(usuarioEmail);
 
-     alert("Conta deletada com sucesso!");
-
-    
-     window.location.href = "index.html";
+     exibirModal("Sucesso!", "Conta deletada com sucesso!", "index.html");
      }
 
      
@@ -89,7 +94,7 @@
      let confirmar = confirm("Deseja cancelar a operação?");
 
      if (confirmar) {
-        window.location.href = "usuario.html";
+        window.location.href = "configuracao.html";
      }
      }
     </script>
