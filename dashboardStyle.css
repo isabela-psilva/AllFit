@@ -1,5 +1,5 @@
 .dashboard {
-    min-height: 120vh;
+    /* min-height: 130vh; */
 
     background-color: #0d0d0d;
 
@@ -120,9 +120,10 @@
 
 .cards-dash {
     display: flex;
-    gap: 10px;
+    gap: 20px;
     flex-wrap: wrap;
     margin-top: 30px;
+    max-width: 100%;
 }
 
 .dash-card {
@@ -132,12 +133,26 @@
 
     border-radius: 15px;
 
-    width: 190px;
+    flex: 1;
+    min-width: 150px;
 
     padding: 20px;
 
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
+
+    animation: fade-in 0.4s ease-in-out forwards;
+    opacity: 0;
 }
+
+@keyframes fade-in {
+    from { transform: translateY(10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.dash-card:nth-child(1) { animation-delay: 0.1s; }
+.dash-card:nth-child(2) { animation-delay: 0.2s; }
+.dash-card:nth-child(3) { animation-delay: 0.3s; }
+.dash-card:nth-child(4) { animation-delay: 0.4s; }
 
 .dash-card p {
     color: #ccc;
@@ -155,9 +170,10 @@
 
 .area-baixo {
     display: flex;
-    gap: 150px;
+    gap: 20px;
     flex-wrap: wrap;
     margin-top: 30px;
+    max-width: 100%;
 }
 
 .painel {
@@ -169,8 +185,16 @@
 
     padding: 25px;
 
-    width: 350px;
+    flex: 1;
+    min-width: 280px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+
+    animation: fade-in 0.4s ease-in-out forwards;
+    opacity: 0;
 }
+
+.painel:nth-child(1) { animation-delay: 0.5s; }
+.painel:nth-child(2) { animation-delay: 0.6s; }
 
 .progresso-circulo {
     width: 130px;
