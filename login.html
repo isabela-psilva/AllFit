@@ -66,6 +66,7 @@
             } else if (usuario.senha !== senha) {
                 exibirModal("Erro!", "Senha incorreta!");
             } else {
+                localStorage.setItem('usuarioLogado', email);
                 exibirModal("Olá!", "Bem-vindo(a), " + usuario.nome + "!", "dashboard.html");
             }
         }

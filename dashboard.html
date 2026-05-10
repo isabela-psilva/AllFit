@@ -3,110 +3,125 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link rel="stylesheet" href="baseStyle.css">
+    <link rel="stylesheet" href="dashboardStyle.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-<section class="dashboard">
+    <section class="dashboard">
 
-    <aside class="sidebar">
-        <img class="logo-dash" src="logo 3.png" alt="AllFit">
+        <aside class="sidebar">
+            <img class="logo-dash" src="logo 3.png" alt="AllFit">
 
-        <nav class="menu-dash">
-            <a href="dashboard.html">
-                <img src="home.png" alt="">
-                Início
+            <nav class="menu-dash">
+                <a href="dashboard.html">
+                    <img src="home.png" alt="">
+                    Início
+                </a>
+                <a href="perfil.html">
+                    <img src="profile.png" alt="">
+                    Meu Perfil
+                </a>
+                <a href="dieta.html">
+                    <img src="diet.png" alt="">
+                    Alimentação
+                </a>
+                <a href="rotinaExercicio.html">
+                    <img src="dumbbell.png" alt="">
+                    Exercícios
+                </a>
+                <a href="configuracao.html">
+                    <img src="settings.png" alt="">
+                    Configurações
+                </a>
+            </nav>
+
+            <a class="sair-dash" href="index.html">
+                <img src="logout.png" alt="">
+                Sair
             </a>
-            <a href="perfil.html">
-                <img src="profile.png" alt="">
-                Meu Perfil
-            </a>
-            <a href="dieta.html">
-                <img src="diet.png" alt="">
-                Alimentação
-            </a>
-            <a href="rotinaExercicio.html">
-                <img src="dumbbell.png" alt="">
-                Exercícios
-            </a>
-            <a href="configuracao.html">
-                <img src="settings.png" alt="">
-                Configurações
-            </a>
-        </nav>
+        </aside>
 
-        <a class="sair-dash" href="index.html">
-            <img src="logout.png" alt="">
-            Sair
-        </a>
-    </aside>
+        <main class="conteudo-dash">
 
-    <main class="conteudo-dash">
-
-        <div class="topo-dash">
-            <div>
-                <h1>Olá, Usuário!</h1>
-                <p>Vamos alcançar seus objetivos juntos!</p>
-            </div>
-
-        </div>
-
-        <section class="cards-dash">
-            <div class="dash-card">
-                <p>IMC</p>
-                <h2>23,4</h2>
-                <span>Peso normal</span>
-            </div>
-
-            <div class="dash-card">
-                <p>Objetivo</p>
-                <h2>Emagrecer</h2>
-                <span>Plano ativo</span>
-            </div>
-
-            <div class="dash-card">
-                <p>Treinos / Semana</p>
-                <h2>4</h2>
-                <span>Rotina semanal</span>
-            </div>
-
-            <div class="dash-card">
-                <p>Plano Atual</p>
-                <h2>Completo</h2>
-                <span>Dieta + treino</span>
-            </div>
-        </section>
-
-        <section class="area-baixo">
-
-            <div class="painel">
-                <h3>Seu progresso</h3>
-
-                <div class="progresso-circulo">
-                    <span>65%</span>
+            <div class="topo-dash">
+                <div>
+                    <h1>Olá, Usuário! 👋</h1>
+                    <p>Vamos alcançar seus objetivos juntos!</p>
                 </div>
 
-                <p>Muito bem! Você está no caminho certo para alcançar seus objetivos.</p>
-
-                
             </div>
 
-            <div class="painel">
-                <h3>Próximo treino</h3>
+            <section class="cards-dash">
+                <div class="dash-card">
+                    <p>IMC</p>
+                    <h2>23,4</h2>
+                    <span>Peso normal</span>
+                </div>
 
-                <img class="img-treino" src="treino_perna.avif" alt="Treino">
+                <div class="dash-card">
+                    <p>Objetivo</p>
+                    <h2>Emagrecer</h2>
+                    <span>Plano ativo</span>
+                </div>
 
-                <h2>Treino de Pernas</h2>
-                <p>Hoje - 18:00</p>
+                <div class="dash-card">
+                    <p>Treinos / Semana</p>
+                    <h2>4</h2>
+                    <span>Rotina semanal</span>
+                </div>
 
-                
-            </div>
+                <div class="dash-card">
+                    <p>Plano Atual</p>
+                    <h2>Completo</h2>
+                    <span>Dieta + treino</span>
+                </div>
+            </section>
 
-        </section>
+            <section class="area-baixo">
 
-    </main>
+                <div class="painel">
+                    <h3>Seu progresso</h3>
 
-</section>
+                    <div class="progresso-circulo">
+                        <span>65%</span>
+                    </div>
 
+                    <p>Muito bem! Você está no caminho certo para alcançar seus objetivos.</p>
+
+                    
+                </div>
+
+                <div class="painel">
+                    <h3>Próximo treino</h3>
+
+                    <img class="img-treino" src="treino_perna.avif" alt="Treino">
+
+                    <h2>Treino de Pernas</h2>
+                    <p>Hoje - 18:00</p>
+
+                    
+                </div>
+
+            </section>
+
+        </main>
+
+    </section>
+
+    <script>
+        const usuarioLogadoEmail = localStorage.getItem('usuarioLogado');
+        console.log("Email do usuário logado:", usuarioLogadoEmail);
+        const usuario = usuarioLogadoEmail ? JSON.parse(localStorage.getItem(usuarioLogadoEmail)) : null;
+
+        onload = () => {
+            if (usuario) {
+                const primeiroNome = usuario.nome.split(' ')[0];
+                document.querySelector('.topo-dash h1').textContent = 'Olá, ' + primeiroNome + ' 👋';
+            } else {
+                document.querySelector('.topo-dash h1').textContent = 'Olá, Usuário! 👋';
+            }
+        }
+    </script>
 </body>
 </html>
