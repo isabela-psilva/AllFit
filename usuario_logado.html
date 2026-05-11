@@ -1,8 +1,9 @@
 <html lang="PT-BR">
     <head>
         <meta charset="UTF-8">
-        <title>Usuário</title>
+        <title>Sugestão Parte 2</title>
         <link rel="stylesheet" href="baseStyle.css">
+        <link rel="stylesheet" href="Base_Style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script language="JavaScript">
             let escolha = "";
@@ -26,40 +27,44 @@
          <nav>
             <a href="dashboard.html">Início</a>
             <a href="perfil.html">Perfil Ideal</a> <!--colocar pagina perfil ideal-->
-            <a href="cadastro.html">Configuração</a> 
+            <a href="configuracao.html">Configuração</a> 
             <a href="index.html">Sair</a>
          </nav>
             
         
         </header>
     <div class="espaco-header"></div>    
-    <section class="formulario">
+    <section class="fundo-form2">
+        <div class="form-2">
+            <div class="formulario">
 
-    <h2>Defina sua localização</h2>
-    <input class="form-item" type="text" id="local" placeholder="Digite sua Cidade"><br>
-    <button class="primary-button" onclick="validarLocal()">Confirmar</button>
-    <p id="erroLocal"></p>
+                <h2>Defina sua localização</h2>
+                <input class="form-item" type="text" id="local" placeholder="Digite sua Cidade"><br>
+                <button class="primary-button" onclick="validarLocal()">Confirmar</button>
+                <p id="erroLocal"></p>
 
     
-    <div id="conteudo" style="display: none;">
+                <div id="conteudo" style="display: none;">
 
-        <h2>Rotinas sugeridas</h2>
+                    <h2>Rotinas sugeridas</h2>
 
-        <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
-            <div class="card">Caminhada diária</div>
-            <div class="card">Dieta equilibrada</div>
-            <div class="card">Treino leve</div>
+                    <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
+                        <div class="card">Caminhada diária</div>
+                        <div class="card">Dieta equilibrada</div>
+                        <div class="card">Treino leve</div>
+                    </div>
+
+                    <h2 style="margin-top:40px;">Escolha por onde começar</h2>
+
+                    <div style="display:flex; gap:20px;">
+                        <a href="dieta.html" class="card">Dieta</a>
+                        <a href="rotinaExercicio.html" class="card">Exercício</a>
+                    </div>
+                </div>
+
+                <br>
+            </div>
         </div>
-
-        <h2 style="margin-top:40px;">Escolha por onde começar</h2>
-
-        <div style="display:flex; gap:20px;">
-            <a href="dieta.html" class="card">Dieta</a>
-            <a href="rotinaExercicio.html" class="card">Exercício</a>
-        </div>
-    </div>
-
-    <br>
     </section>
 
     <footer>

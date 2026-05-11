@@ -5,6 +5,8 @@
     <title>Perfil Ideal</title>
     <script src="script.js"></script>
     <link rel="stylesheet" href="baseStyle.css">
+    <link rel="stylesheet" href="Base_Style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
@@ -24,61 +26,63 @@
     </section>
 
     
-    <section class="formulario">
-        <h2>Dados Pessoais</h2>
+    <section class="fundo-perfil">
+        <div class="form-perfil">
+            <div class="formulario">
+                <h2>Dados Pessoais</h2>
 
-        <form>
+                <form>
 
-            <label>Nome:</label>
-            <input class="form-item" type="text" placeholder="Seu nome" required>
-            <br>
+                    <label>Nome:</label>
+                    <input class="form-item" type="text" placeholder="Seu nome" required>
+                    <br>
 
-            <label>Idade:</label>
-            <input id="idade" class="form-item" type="number" min="18" max="75" placeholder="Sua idade" required>
-            <br>
+                    <label>Idade:</label>
+                    <input id="idade" class="form-item" type="number" min="18" max="75" placeholder="Sua idade" required>
+                    <br>
 
-            <label>Altura:</label>
-            <input id="altura" class="form-item" type="number" step="0.01" placeholder="Ex: 1.75" required>
-            <br>
+                    <label>Altura:</label>
+                    <input id="altura" class="form-item" type="number" step="0.01" placeholder="Ex: 1.75" required>
+                    <br>
 
-            <label>Peso:</label>
-            <input id="peso" class="form-item" type="number" step="0.01" placeholder="Ex: 70kg" required>
-            <br>
+                    <label>Peso:</label>
+                    <input id="peso" class="form-item" type="number" step="0.01" placeholder="Ex: 70kg" required>
+                    <br>
 
-            <br>
+                    <br>
 
-            <label>Possui restrição alimentar?</label><br>
-            <input type="radio" name="restAlimentar" value="sim"> Sim
-            <input type="radio" name="restAlimentar" value="nao"> Não
+                    <label>Possui restrição alimentar?</label><br>
+                    <input type="radio" name="restAlimentar" value="sim"> Sim
+                    <input type="radio" name="restAlimentar" value="nao"> Não
 
-            <br><br>
+                    <br><br>
 
-            <label>Possui restrição física?</label><br>
-            <input type="radio" name="restFisica" value="sim"> Sim
-            <input type="radio" name="restFisica" value="nao"> Não
+                    <label>Possui restrição física?</label><br>
+                    <input type="radio" name="restFisica" value="sim"> Sim
+                    <input type="radio" name="restFisica" value="nao"> Não
 
-            <br><br>
+                    <br><br>
 
-            <label>IMC:</label>
-            <input id="imc" class="form-item" type="text" readonly placeholder="Calculado automaticamente">
+                    <label>IMC:</label>
+                    <input id="imc" class="form-item" type="text" readonly placeholder="Calculado automaticamente">
 
-            <br><br>
 
-            <div class="botoes">
-               <p id="resultadoIMC"></p>
-                <button type="button" class="primary-button" onclick="calcularIMC()">Calcular IMC</button>
-                <button type="button" class="primary-button" onclick="salvarPerfil()">Salvar</button>
+                    <div class="botoes">
+                        <p id="resultadoIMC"></p>
+                        <button type="button" class="primary-button" onclick="calcularIMC()">Calcular IMC</button>
+                        <button type="button" class="primary-button" onclick="salvarPerfil()">Salvar</button>
+                    </div>
+                    <div id="meuModal" class="modal-container" style="display: none;">
+                        <div class="modal-box">
+                            <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
+                            <p id="modalTexto">Mensagem da operação.</p>
+                            <input type="button" id="btnModalOk" class="primary-button" value="Ok">
+                        </div>
+                    </div>
+
+                </form>
             </div>
-            <div id="meuModal" class="modal-container" style="display: none;">
-                <div class="modal-box">
-                    <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
-                    <br><p></p>
-                    <p id="modalTexto">Mensagem da operação.</p>
-                    <input type="button" id="btnModalOk" class="primary-button" value="Ok">
-                </div>
-            </div>
-
-        </form>
+        </div>
     </section>
 
     <footer>

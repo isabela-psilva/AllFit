@@ -1,8 +1,9 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>AllFit</title>
+    <title>Rotina de Exercícios</title>
     <link rel="stylesheet" href="baseStyle.css">
+    <link rel="stylesheet" href="Base_Style.css">
     <!-- <link rel="stylesheet" href="exercicioStyle.css"> -->
 </head>
 <body>
@@ -21,108 +22,121 @@
         <p>Treinos feitos sob medida para você.</p>
     </section>
 
-    <section class="formulario">
-        <h2>Questionário de Customização (?)</h2>
-        <form>
-            <label>Possuí alguma dificuldade de mobilidade?</label><br>
-            <input type="radio" name="tem_difMobilidade" value="sim"> Sim
-            <input type="radio" name="tem_difMobilidade" value="nao"> Não
-            <br>
-            <br>
+    <section class="fundo-exercicio">
+        <div class="form-exercicio">
+            <div class="formulario">
+                <h2>Questionário de Customização</h2>
+                <form>
+                    <label>Possuí alguma dificuldade de mobilidade?</label><br>
+                    <input type="radio" name="tem_difMobilidade" value="sim"> Sim
+                    <input type="radio" name="tem_difMobilidade" value="nao"> Não
+                    <br>
 
-            <section class="center-form hidden-list" id="listaDificuldades" style="display: none;">
-                <label>
-                    <input type="checkbox" name="dif_mobilidade" value="joelho">
-                    Dor no joelho
-                </label><br>
+                    <section class="center-form hidden-list" id="listaDificuldades" style="display: none;">
+                        <label>
+                            <input type="checkbox" name="dif_mobilidade" value="joelho">
+                            Dor no joelho
+                        </label><br>
     
-                <label>
-                    <input type="checkbox" name="dif_mobilidade" value="coluna">
-                    Problemas na coluna
-                </label><br>
+                        <label>
+                            <input type="checkbox" name="dif_mobilidade" value="coluna">
+                            Problemas na coluna
+                        </label><br>
     
-                <label>
-                    <input type="checkbox" name="dif_mobilidade" value="ombro">
-                    Lesão no ombro
-                </label><br>
+                        <label>
+                            <input type="checkbox" name="dif_mobilidade" value="ombro">
+                            Lesão no ombro
+                        </label><br>
     
-                <label>
-                    <input type="checkbox" name="dif_mobilidade" value="equilibrio">
-                    Dificuldade de equilíbrio
-                </label><br>
+                        <label>
+                            <input type="checkbox" name="dif_mobilidade" value="equilibrio">
+                            Dificuldade de equilíbrio
+                        </label><br>
     
-                <!-- <label>
-                    <input type="checkbox" id="outrosCheck">
-                    Outros:
-                </label>
-                    <input type="text" id="outrosTexto" disabled> -->
-            </section>
-            <br><br>
-            <label>Qual tipo de exercício quer fazer?</label><br>
-            <select class="form-item" required>
-                <option value="" disabled selected hidden>Selecione uma opção</option>
-                <option>Yoga</option>
-                <option>Caminhada/Corrida</option>
-                <option>Aeróbico</option>
-                <option>Anaeróbico</option>
-                <option>Calistenia</option>
-            </select><br>
-            <br>
+                        <!-- <label>
+                            <input type="checkbox" id="outrosCheck">
+                            Outros:
+                        </label>
+                        <input type="text" id="outrosTexto" disabled> -->
+                    </section>
+                    <br>
+                    <label>Qual tipo de exercício quer fazer?</label><br>
+                    <br>
+                    <select class="form-item" name="tipoExercicio" required>
+                        <option value="" disabled selected hidden>Selecione uma opção</option>
+                        <option>Yoga</option>
+                        <option>Caminhada/Corrida</option>
+                        <option>Aeróbico</option>
+                        <option>Anaeróbico</option>
+                        <option>Calistenia</option>
+                    </select><br>
+                    <br>
             
-            <label>Dias disponíveis</label><br>
-            <section class="center-form">
-                <input type="checkbox" name="dias" value="segunda"> Segunda<br>
-                <input type="checkbox" name="dias" value="terca"> Terça<br>
-                <input type="checkbox" name="dias" value="quarta"> Quarta<br>
-                <input type="checkbox" name="dias" value="quinta"> Quinta<br>
-                <input type="checkbox" name="dias" value="sexta"> Sexta<br>
+                    <label>Dias disponíveis</label><br>
+                    <section class="center-form">
+                        <input type="checkbox" name="dias" value="segunda"> Segunda<br>
+                        <input type="checkbox" name="dias" value="terca"> Terça<br>
+                        <input type="checkbox" name="dias" value="quarta"> Quarta<br>
+                        <input type="checkbox" name="dias" value="quinta"> Quinta<br>
+                        <input type="checkbox" name="dias" value="sexta"> Sexta<br>
 
-                <br><br>
-            </section>
+                        <br><br>
+                    </section>
 
-            <label>Horário disponível:</label><br><br>            
-            De: <input style="width: 120px;" class="form-item" type="time" name="inicio">
-            <br>
-            Até: <input style="width: 120px;" class="form-item" type="time" name="fim">
+                    <label>Horário disponível:</label><br><br>            
+                    De: <input style="width: 120px;" class="form-item" type="time" name="inicio">
+                    <br>
+                    Até: <input style="width: 120px;" class="form-item" type="time" name="fim">
 
-            <br><br>
+                    <br>
 
-            <br>
-            <label>Duração das sessões:</label><br>
+                    <br>
+                    <label>Duração das sessões:</label><br>
 
-            <section class="center-form">
-                <input type="radio" name="duracao" value="30"> 30 min<br>
-                <input type="radio" name="duracao" value="60"> 1 hora<br>
-                <input type="radio" name="duracao" value="120"> 2 horas<br>
-                <br>
-            </section>
+                    <section class="center-form">
+                        <input type="radio" name="duracao" value="30"> 30 min<br>
+                        <input type="radio" name="duracao" value="60"> 1 hora<br>
+                        <input type="radio" name="duracao" value="120"> 2 horas<br>
+                        <br>
+                    </section>
 
-            <br>
-            <label>Local para execução dos exercícios:</label>
-            <br>
+                    <br>
+                    <label>Local para execução dos exercícios:</label><br>
+                    <br>
 
-            <select class="form-item" name="local" required>
-                <option value="" disabled selected hidden>Selecione uma opção</option>
-                <option value="casa">Em casa</option>
-                <option value="academia">Academia</option>
-                <option value="ar_livre">Ao ar livre</option>
-                <!-- <option value="outro">Outro</option> -->
-            </select>
+                    <select class="form-item" name="local" required>
+                        <option value="" disabled selected hidden>Selecione uma opção</option>
+                        <option value="casa">Em casa</option>
+                        <option value="academia">Academia</option>
+                        <option value="ar_livre">Ao ar livre</option>
+                        <!-- <option value="outro">Outro</option> -->
+                    </select>
 
-            <br><br>
+                    <br><br>
 
-            <label>Duração do ciclo:</label><br>
+                    <label>Duração do ciclo:</label><br>
+                    <br>
 
-            <input style="width: 140px;" class="form-item" type="number" name="dias_treino" min="1" max="7" placeholder="Dias de treino"> 
-            /
-            <input style="width: 140px;" class="form-item" type="number" name="dias_total" min="1" max="7" placeholder="Total de dias">
+                    <input style="width: 140px;" class="form-item" type="number" name="dias_treino" min="1" max="7" placeholder="Dias de treino"> 
+            
+                    <input style="width: 140px;" class="form-item" type="number" name="dias_total" min="1" max="7" placeholder="Total de dias">
 
-            <br><small>Ex: 3 / 7 (treina 3 dias em um ciclo de 7 dias)</small>
-            <br>
-            <br>
+                    <br><small>Ex: 3 / 7 (treina 3 dias em um ciclo de 7 dias)</small>
+                    <br>
+                    <br>
 
-            <button type="submit" class="primary-button">Gerar treino</button>
-        </form>
+                    <button type="submit" class="primary-button">Gerar treino</button>
+                    <div id="meuModal" class="modal-container" style="display: none;">
+                                <div class="modal-box">
+                                    <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
+                                    <br><p></p>
+                                    <p id="modalTexto">Mensagem da operação.</p>
+                                    <input type="button" id="btnModalOk" class="primary-button" value="Ok">
+                                </div>
+                    </div>  
+                </form>
+            </div>
+        </div>
     </section>
 
     <footer>
@@ -130,17 +144,144 @@
     </footer>
 </body>
 <script>
-    const radios = document.querySelectorAll('input[name="tem_difMobilidade"]');
-    const lista = document.getElementById("listaDificuldades");
+const radiosMobilidade = document.querySelectorAll('input[name="tem_difMobilidade"]');
+const listaDificuldades = document.getElementById("listaDificuldades");
+const formulario = document.querySelector("form");
 
-    radios.forEach(radio => {
+radiosMobilidade.forEach(radio => {
     radio.addEventListener("change", () => {
         if (radio.value === "sim") {
-        lista.style.display = "block";
+            listaDificuldades.style.display = "block";
         } else {
-        lista.style.display = "none";
+            listaDificuldades.style.display = "none";
+
+            const dificuldades = document.querySelectorAll('input[name="dif_mobilidade"]');
+            dificuldades.forEach(item => {
+                item.checked = false;
+            });
         }
     });
+});
+
+formulario.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let mobilidade = document.querySelector('input[name="tem_difMobilidade"]:checked');
+    let tipoExercicio = document.querySelector('select[name="tipoExercicio"]');
+    let diasSelecionados = document.querySelectorAll('input[name="dias"]:checked');
+    let horaInicio = document.querySelector('input[name="inicio"]');
+    let horaFim = document.querySelector('input[name="fim"]');
+    let duracao = document.querySelector('input[name="duracao"]:checked');
+    let local = document.querySelector('select[name="local"]');
+    let diasTreino = document.querySelector('input[name="dias_treino"]');
+    let diasTotal = document.querySelector('input[name="dias_total"]');
+
+    if (!mobilidade) {
+        alert("Informe se você possui alguma dificuldade de mobilidade.");
+        return;
+    }
+
+    if (mobilidade.value === "sim") {
+        let dificuldades = document.querySelectorAll('input[name="dif_mobilidade"]:checked');
+
+        if (dificuldades.length === 0) {
+            alert("Selecione pelo menos uma dificuldade de mobilidade.");
+            listaDificuldades.scrollIntoView();
+            return;
+        }
+    }
+
+    if (tipoExercicio.value === "") {
+        alert("Escolha o tipo de exercício.");
+        tipoExercicio.focus();
+        return;
+    }
+
+    if (diasSelecionados.length === 0) {
+        alert("Selecione pelo menos um dia disponível.");
+        return;
+    }
+
+    if (horaInicio.value === "") {
+        alert("Informe o horário inicial.");
+        horaInicio.focus();
+        return;
+    }
+
+    if (horaFim.value === "") {
+        alert("Informe o horário final.");
+        horaFim.focus();
+        return;
+    }
+
+    if (horaInicio.value >= horaFim.value) {
+        alert("O horário final deve ser maior que o horário inicial.");
+        horaFim.focus();
+        return;
+    }
+
+    if (!duracao) {
+        alert("Escolha a duração das sessões.");
+        return;
+    }
+
+    if (local.value === "") {
+        alert("Escolha o local para execução dos exercícios.");
+        local.focus();
+        return;
+    }
+
+    if (diasTreino.value === "" || diasTotal.value === "") {
+        alert("Preencha a duração do ciclo.");
+        return;
+    }
+
+    if (Number(diasTreino.value) < 1 || Number(diasTreino.value) > 7) {
+        alert("Dias de treino deve estar entre 1 e 7.");
+        diasTreino.focus();
+        return;
+    }
+
+    if (Number(diasTotal.value) < 1 || Number(diasTotal.value) > 7) {
+        alert("Total de dias deve estar entre 1 e 7.");
+        diasTotal.focus();
+        return;
+    }
+
+    if (Number(diasTreino.value) > Number(diasTotal.value)) {
+        alert("Dias de treino não pode ser maior que o total de dias.");
+        diasTreino.focus();
+        return;
+    }
+
+    let dificuldadesSelecionadas = [];
+    document.querySelectorAll('input[name="dif_mobilidade"]:checked').forEach(item => {
+        dificuldadesSelecionadas.push(item.value);
     });
+
+    let dias = [];
+    diasSelecionados.forEach(item => {
+        dias.push(item.value);
+    });
+
+    let dadosTreino = {
+        mobilidade: mobilidade.value,
+        dificuldades: dificuldadesSelecionadas,
+        tipoExercicio: tipoExercicio.value,
+        dias: dias,
+        horarioInicio: horaInicio.value,
+        horarioFim: horaFim.value,
+        duracao: duracao.value,
+        local: local.value,
+        diasTreino: diasTreino.value,
+        diasTotal: diasTotal.value
+    };
+
+    localStorage.setItem("dadosTreino", JSON.stringify(dadosTreino));
+
+    alert("Rotina de exercícios criada com sucesso!");
+
+    window.location.href = "rotina_exercicios.html";
+});
 </script>
 </html>
