@@ -17,3 +17,15 @@ function exibirModal(titulo, mensagem, urlDestino = null, campoFocus = null) {
 
     modal.style.display = 'flex';
 }
+
+function calcularSugestao(imc) {
+    let sugestao = "";
+    if (imc < 18.5) {
+        sugestao = "Ganhar massa";
+    } else if (imc < 25) {
+        sugestao = "Manter alimentação saudável";
+    } else {
+        sugestao = "Emagrecer";
+    }
+    return sugestao;
+}

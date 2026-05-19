@@ -67,7 +67,12 @@
                 exibirModal("Erro!", "Senha incorreta!");
             } else {
                 localStorage.setItem('usuarioLogado', email);
-                exibirModal("Olá!", "Bem-vindo(a), " + usuario.nome + "!", "dashboard.html");
+                if (usuario.idade === 0) {
+                    exibirModal("Aviso!", "Você ainda não definiu seu perfil, defina agora.", "perfil.html");
+                }
+                else {
+                    exibirModal("Olá!", "Bem-vindo(a), " + usuario.nome + "!", "dashboard.html");
+                }
             }
         }
     </script>
