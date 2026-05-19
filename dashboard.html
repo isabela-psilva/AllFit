@@ -53,7 +53,7 @@
                 </div>
                 <div id="define-profile" style="text-align: right; display: none;">
                     <h3>Você ainda não definiu seu perfil!</h3>
-                    <button class="primary-button">Definir perfil</button>
+                    <button class="primary-button" onclick="window.location.href = 'perfil.html'">Definir perfil</button>
                 </div>
             </div>
 
@@ -132,7 +132,8 @@
                     objTitle.innerText = sugestao;
                 }
                 else {
-                    imcTitle.innerText = 0;
+                    imcTitle.innerText = "não definido";
+                    objTitle.innerText = "não definido";
                     document.getElementById('define-profile').style = 'display: block';
                 }
 
