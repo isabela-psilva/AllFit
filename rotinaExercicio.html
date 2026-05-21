@@ -5,6 +5,34 @@
     <link rel="stylesheet" href="Base_Style.css">
     <script src="script.js"></script>
     <!-- <link rel="stylesheet" href="exercicioStyle.css"> -->
+    <script>
+        const usuarioLogadoEmail = localStorage.getItem('usuarioLogado');
+        const usuario = usuarioLogadoEmail ? JSON.parse(localStorage.getItem(usuarioLogadoEmail)) : null;
+
+        if (!usuario) {
+            exibirModal("Erro!", "O usuário não está logado. Faça login para continuar.", "login.html");
+        }
+        else {
+            const editando = new URLSearchParams(window.location.search).get("editar");
+            
+            
+            
+            
+            // Seria interessante preencher o formulário com os dados antigos quando carregar a página.
+            // OBS: estou com preguiça no momento².
+            
+            
+            
+            
+            
+            
+            // Explicação disso aqui tá lá no dieta.html 👍
+            if (localStorage.getItem(`treino_${usuarioLogadoEmail}`) !== null && !editando) {
+                // Se existir, redireciona pra página de dados da dieta já que ele já preencheu o form.
+                window.location.href = 'rotina_exercicios.html';
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -150,6 +178,7 @@
     </footer>
 </body>
 <script>
+
 const radiosMobilidade = document.querySelectorAll('input[name="tem_difMobilidade"]');
 const listaDificuldades = document.getElementById("listaDificuldades");
 const formulario = document.querySelector("form");
