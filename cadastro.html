@@ -71,7 +71,11 @@
                 return;
             }
 
-            localStorage.setItem(email, JSON.stringify({ nome, senha }));
+            const idade = 0;
+            const altura = 0;
+            const peso = 0;
+
+            localStorage.setItem(email, JSON.stringify({ nome, senha, idade, altura, peso }));
             exibirModal("Sucesso!", "Cadastro realizado com sucesso! Faça o login.", "login.html");
         }
     </script>

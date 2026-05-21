@@ -32,9 +32,9 @@
 
                 <form>
 
-                    <label>Nome:</label>
+                    <!-- <label>Nome:</label>
                     <input class="form-item" type="text" placeholder="Seu nome" required>
-                    <br>
+                    <br> -->
 
                     <label>Idade:</label>
                     <input id="idade" class="form-item" type="number" min="18" max="75" placeholder="Sua idade" required>
@@ -87,86 +87,87 @@
     <footer>
         <p>AllFit © 2026</p>
     </footer>
-   <script>
-      function calcularIMC() {
+    <script>
+        function calcularIMC() {
 
-    let idade = document.getElementById("idade");
-    let peso = document.getElementById("peso");
-    let altura = document.getElementById("altura");
-    let imcCampo = document.getElementById("imc");
+            let idade = document.getElementById("idade");
+            let peso = document.getElementById("peso");
+            let altura = document.getElementById("altura");
+            let imcCampo = document.getElementById("imc");
 
-    
-    if (idade.value < 18 || idade.value > 75) {
-        exibirModal("Ops!", "Idade inválida!", null, idade);
-        return;
-    }
+            
+            if (idade.value < 18 || idade.value > 75) {
+                exibirModal("Ops!", "Idade inválida!", null, idade);
+                return;
+            }
 
-    if (peso.value < 30 || peso.value > 300) {
-        exibirModal("Ops!", "Peso inválido!", null, peso);
-        return;
-    }
+            if (peso.value < 30 || peso.value > 300) {
+                exibirModal("Ops!", "Peso inválido!", null, peso);
+                return;
+            }
 
-    if (altura.value < 1.2 || altura.value > 2.2) {
-        exibirModal("Ops!", "Altura inválida!", null, altura);
-        return;
-    }
+            if (altura.value < 1.2 || altura.value > 2.2) {
+                exibirModal("Ops!", "Altura inválida!", null, altura);
+                return;
+            }
 
-    
-    let imc = peso.value / (altura.value * altura.value);
-    imc = imc.toFixed(2);
+            
+            let imc = peso.value / (altura.value * altura.value);
+            imc = imc.toFixed(2);
 
-    
-    let biotipo = "";
-    if (imc < 18.5) {
-        biotipo = "Abaixo do peso";
-    } else if (imc < 25) {
-        biotipo = "Peso normal";
-    } else if (imc < 30) {
-        biotipo = "Sobrepeso";
-    } else if (imc < 35) {
-        biotipo = "Obesidade Grau I";
-    } else if (imc < 40) {
-        biotipo = "Obesidade Grau II";
-    } else {
-        biotipo = "Obesidade Grau III";
-    }
+            
+            let biotipo = "";
+            if (imc < 18.5) {
+                biotipo = "Abaixo do peso";
+            } else if (imc < 25) {
+                biotipo = "Peso normal";
+            } else if (imc < 30) {
+                biotipo = "Sobrepeso";
+            } else if (imc < 35) {
+                biotipo = "Obesidade Grau I";
+            } else if (imc < 40) {
+                biotipo = "Obesidade Grau II";
+            } else {
+                biotipo = "Obesidade Grau III";
+            }
 
-    
-    imcCampo.value = imc + " (" + biotipo + ")";
+            
+            imcCampo.value = imc + " (" + biotipo + ")";
 
-    
-    let resultado = document.getElementById("resultadoIMC");
-    resultado.innerText = "IMC: " + imc + " - Biotipo: " + biotipo + " ✅";
-    resultado.style.color = "lightgreen";
+            
+            let resultado = document.getElementById("resultadoIMC");
+            resultado.innerText = "IMC: " + imc + " - Biotipo: " + biotipo + " ✅";
+            resultado.style.color = "lightgreen";
 
-    
-    let sugestao = "";
-    if (imc < 18.5) {
-        sugestao = "Ganhar massa";
-    } else if (imc < 25) {
-        sugestao = "Manter alimentação saudável";
-    } else {
-        sugestao = "Emagrecer";
-    }
+            
+            let sugestao = calcularSugestao(imc);
 
-    exibirModal("Sugestão", "De acordo com seu biotipo, sugerimos '" + sugestao + "'");
-    }
+            exibirModal("Sugestão", "De acordo com seu biotipo, sugerimos '" + sugestao + "'");
+        }
 
 
-    
-    function salvarPerfil() {
+            
+        function salvarPerfil() {
+            let restAlimentar = document.querySelector('input[name="restAlimentar"]:checked');
+            let restFisica = document.querySelector('input[name="restFisica"]:checked');
 
-    let restAlimentar = document.querySelector('input[name="restAlimentar"]:checked');
-    let restFisica = document.querySelector('input[name="restFisica"]:checked');
+            if (!restAlimentar || !restFisica) {
+                exibirModal("Atenção!", "Selecione todas as opções!");
+                return;
+            }
 
-    if (!restAlimentar || !restFisica) {
-        exibirModal("Atenção!", "Selecione todas as opções!");
-        return;
-    }
+            const emailLogado = localStorage.getItem('usuarioLogado');
+            const usuario = JSON.parse(localStorage.getItem(emailLogado))
 
-    exibirModal("Sucesso!", "Perfil salvo com sucesso!", "usuario_logado.html");
-    }
-   </script>
+            usuario.idade = idade.value;
+            usuario.altura = altura.value;
+            usuario.peso = peso.value;
+
+            localStorage.setItem(emailLogado, JSON.stringify(usuario));
+
+            exibirModal("Sucesso!", "Perfil salvo com sucesso!", "usuario_logado.html");
+        }
+    </script>
 
    
 

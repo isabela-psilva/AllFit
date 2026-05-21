@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <title>Rotina de Exercícios</title>
     <link rel="stylesheet" href="Base_Style.css">
+    <script src="script.js"></script>
     <!-- <link rel="stylesheet" href="exercicioStyle.css"> -->
 </head>
 <body>
@@ -137,7 +138,13 @@
             </div>
         </div>
     </section>
-
+    <div id="meuModal" class="modal-container" style="display: none;">
+        <div class="modal-box">
+            <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
+            <p id="modalTexto">Mensagem da operação.</p>
+            <input type="button" id="btnModalOk" class="primary-button" value="Ok">
+        </div>
+    </div>
     <footer>
         <p>AllFit © 2026</p>
     </footer>
@@ -276,11 +283,14 @@ formulario.addEventListener("submit", function(event) {
         diasTotal: diasTotal.value
     };
 
-    localStorage.setItem("dadosTreino", JSON.stringify(dadosTreino));
+    const emailLogado = localStorage.getItem("usuarioLogado");
 
-    alert("Rotina de exercícios criada com sucesso!");
+    localStorage.setItem(
+        `treino_${emailLogado}`,
+        JSON.stringify(dadosTreino)
+    );
 
-    window.location.href = "rotina_exercicios.html";
+    exibirModal("Sucesso!", "Rotina de exercícios criada com sucesso!", "rotina_exercicios.html");
 });
 </script>
 </html>

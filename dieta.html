@@ -7,55 +7,173 @@
         <script lang="JavaScript">
             function Confirmar() {
 
-            // Set de variáveis
-            var restricao=document.querySelector('input[name="tem_restricao"]:checked');
-            var restricao_plus=document.querySelector('input[name="tem_restricao_plus"]:checked');
-            var valor=document.frm_dieta.txt_valor.value;
-            var grupo=document.frm_dieta.grupo_alimentar.value;
-            var calorias=document.frm_dieta.txt_calorias.value;
-            var cafe=document.frm_dieta.hora_cafe.value;
-            var almoco=document.frm_dieta.hora_almoco.value;
-            var janta=document.frm_dieta.hora_janta.value;
-            var ciclo=document.frm_dieta.ciclo_dieta.value;
-            var suplemento=document.querySelector('input[name="usa_suplemento"]:checked');
+                // Radios
+                const restricao = document.querySelector('input[name="tem_restricao"]:checked');
+                const restricaoPlus = document.querySelector('input[name="tem_restricao_plus"]:checked');
+                const suplemento = document.querySelector('input[name="usa_suplemento"]:checked');
 
-            // Verificação se todos os campos foram preenchidos
-            if (restricao &&
-                restricao_plus &&
-                valor !== "" &&
-                grupo !== "" &&
-                calorias !== "" &&
-                cafe !== "" &&
-                almoco !== "" &&
-                janta !== "" &&
-                ciclo !== "" &&
-                suplemento) {
+                // Inputs
+                const valor = document.frm_dieta.txt_valor.value;
+                const grupo = document.frm_dieta.grupo_alimentar.value;
+                const calorias = document.frm_dieta.txt_calorias.value;
 
-            // Verificação dos valores
-            if (valor > 9 &&
-               valor < 100000 &&
-               calorias > 99 &&
-               calorias < 100000) {
-               exibirModal("Sucesso!", "Dieta gerada com sucesso!", "rotina_dieta.html");
-                   } else {
-                    if (valor < 10 || valor > 99999) {
-                    exibirModal("Erro!", "Valor em dinheiro inválido!", null, document.frm_dieta.txt_valor);
-                    document.frm_dieta.txt_valor.value="";
-                } else {
-                    if (calorias < 100 || calorias > 99999) {
-                        exibirModal("Erro!", "Meta de calorias inválida!", null, document.frm_dieta.txt_calorias);
-                        document.frm_dieta.txt_calorias.value="";
+                const cafe = document.frm_dieta.hora_cafe.value;
+                const almoco = document.frm_dieta.hora_almoco.value;
+                const janta = document.frm_dieta.hora_janta.value;
+
+                const ciclo = document.frm_dieta.ciclo_dieta.value;
+
+                // Verificação
+                if (
+                    restricao &&
+                    restricaoPlus &&
+                    valor !== "" &&
+                    grupo !== "" &&
+                    calorias !== "" &&
+                    cafe !== "" &&
+                    almoco !== "" &&
+                    janta !== "" &&
+                    ciclo !== "" &&
+                    suplemento
+                ) {
+
+                    // Validação
+                    if (
+                        valor > 9 &&
+                        valor < 100000 &&
+                        calorias > 99 &&
+                        calorias < 100000
+                    ) {
+
+                        // =========================
+                        // PEGAR CHECKBOXES
+                        // =========================
+
+                        const restricoes = [
+                            ...document.querySelectorAll('#listaRestricoes input[type="checkbox"]:checked')
+                        ].map(c => c.value);
+
+                        const restricoesExtras = [
+                            ...document.querySelectorAll('#listaRestricoesPlus input[type="checkbox"]:checked')
+                        ].map(c => c.value);
+
+                        // =========================
+                        // PEGAR TEXTAREA
+                        // =========================
+
+                        const alimentosNaoConsumidos =
+                            document.querySelector('#listaRestricoesPlus textarea').value;
+
+                        // =========================
+                        // PEGAR SUPLEMENTO
+                        // =========================
+
+                        let nomeSuplemento = "";
+
+                        if (suplemento.value === "sim") {
+
+                            nomeSuplemento =
+                                document.querySelector('#textoSuplemento input').value;
+                        }
+
+                        // =========================
+                        // USUÁRIO LOGADO
+                        // =========================
+
+                        const emailLogado =
+                            localStorage.getItem("usuarioLogado");
+
+                        // =========================
+                        // OBJETO DIETA
+                        // =========================
+
+                        const dieta = {
+
+                            emailUsuario: emailLogado,
+
+                            possuiRestricao:
+                                restricao.value === "sim",
+
+                            restricoes,
+
+                            possuiRestricaoExtra:
+                                restricaoPlus.value === "sim",
+
+                            restricoesExtras,
+
+                            alimentosNaoConsumidos,
+
+                            valorMaximo: Number(valor),
+
+                            grupoAlimentar: grupo,
+
+                            metaCalorias: Number(calorias),
+
+                            horarios: {
+                                cafe,
+                                almoco,
+                                janta
+                            },
+
+                            ciclo,
+
+                            usaSuplemento:
+                                suplemento.value === "sim",
+
+                            suplemento: nomeSuplemento
+                        };
+
+                        // =========================
+                        // SALVAR
+                        // =========================
+
+                        localStorage.setItem(
+                            `dieta_${emailLogado}`,
+                            JSON.stringify(dieta)
+                        );
+
+                        console.log(dieta);
+
+                        exibirModal(
+                            "Sucesso!",
+                            "Dieta gerada com sucesso!",
+                            "rotina_dieta.html"
+                        );
+
+                    } else {
+
+                        if (valor < 10 || valor > 99999) {
+
+                            exibirModal(
+                                "Erro!",
+                                "Valor em dinheiro inválido!",
+                                null,
+                                document.frm_dieta.txt_valor
+                            );
+
+                            document.frm_dieta.txt_valor.value = "";
+
+                        } else {
+
+                            if (calorias < 100 || calorias > 99999) {
+
+                                exibirModal(
+                                    "Erro!",
+                                    "Meta de calorias inválida!",
+                                    null,
+                                    document.frm_dieta.txt_calorias
+                                );
+
+                                document.frm_dieta.txt_calorias.value = "";
+                            }
+                        }
                     }
-                }        
-            }     
-        } else {
-            exibirModal("Atenção!", "Preencha todos os campos!");
-        }
-    }
+                }
+            }
 
-        function Cancelar() {
-            exibirModal("Cancelado", "Geração de dieta cancelada", "usuario_logado.html");    
-        }
+            function Cancelar() {
+                exibirModal("Cancelado", "Geração de dieta cancelada", "usuario_logado.html");    
+            }
         </script>
     </head>
     <body>
@@ -86,13 +204,13 @@
 
                             <section id="listaRestricoes" style="display: none;">
                                 <br>
-                                <input type="checkbox">Laticínios <br>
-                                <input type="checkbox">Glúten <br>
-                                <input type="checkbox">Oleaginosas <br>
-                                <input type="checkbox">Leguminosas <br>
-                                <input type="checkbox">Frutos do mar <br>
-                                <input type="checkbox">Ovos <br>
-                                <input type="checkbox">Outros <br>
+                                <input type="checkbox" value="Laticínios">Laticínios <br>
+                                <input type="checkbox" value="Glúten">Glúten <br>
+                                <input type="checkbox" value="Oleaginosas">Oleaginosas <br>
+                                <input type="checkbox" value="Leguminosas">Leguminosas <br>
+                                <input type="checkbox" value="Frutos do mar">Frutos do mar <br>
+                                <input type="checkbox" value="Ovos">Ovos <br>
+                                <input type="checkbox" value="Outros">Outros <br>
                             </section>
                             <br>
                             <br>
@@ -105,12 +223,12 @@
                             <br>
                             <br>
                             <section id="listaRestricoesPlus" style="display: none;">
-                                <input type="checkbox">Sou vegano(a) <br>
-                                <input type="checkbox">Sou vegetariano(a) <br>
-                                <input type="checkbox">Sou diabético(a) <br>
-                                <input type="checkbox">Sou hipertenso(a) <br>
-                                <input type="checkbox">Por motivos religiosos <br>
-                                <input type="checkbox">Tenho alguma restrição <br>
+                                <input type="checkbox" value="vegano">Sou vegano(a) <br>
+                                <input type="checkbox" value="vegetariano">Sou vegetariano(a) <br>
+                                <input type="checkbox" value="diabético">Sou diabético(a) <br>
+                                <input type="checkbox" value="hipertenso">Sou hipertenso(a) <br>
+                                <input type="checkbox" value="religiosos">Por motivos religiosos <br>
+                                <input type="checkbox" value="outro">Tenho alguma restrição <br>
                                 <!-- <input type="checkbox">não tenho outras restrições <br> -->
                                 <br>
                                 <br>
