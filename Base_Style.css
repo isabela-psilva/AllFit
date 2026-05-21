@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 :root
 {
     --verde-claro: #27AE60;
@@ -11,6 +15,7 @@
 
 html, body{
     height: 100%;
+    min-height: 100%;
     margin: 0;
     background-color: #0d0d0d;
 }
@@ -22,6 +27,7 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 /* HEADER (veio do segundo, pois estava comentado no primeiro) */
@@ -267,7 +273,8 @@ nav a:hover {
     border-width: 1px;
     text-align: left;
     padding: 14px 10px;
-    width: 250px;
+    width: 100%;
+    max-width: 300px;
     margin-bottom: 14px;
     outline: none;
 }
@@ -350,19 +357,22 @@ input[type="checkbox"]:checked {
 }
 
 .fundo-imagem {
-    width: 96.8%;
-    min-height: auto;
+    width: 100%;
+    min-height: 100vh;
+
     background:
-        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-        url('https://images.unsplash.com/photo-1554284126-aa88f22d8b74') no-repeat center;
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+        url('fundo_principal.jpg');
+
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 100px 20px 40px;
-    flex: 1;
+
+    padding: 120px 20px 40px;
 }
 
 .botoes {
@@ -377,18 +387,38 @@ input[type="checkbox"]:checked {
     background-color: rgba(0, 0, 0, 0.75); 
     padding: 40px;
     border-radius: 15px;
-    width: 25%;
+
+    width: 90%;
     max-width: 400px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* gap: 15px; */
+
     box-shadow: 0 0 30px rgba(0,0,0,0.6);
     backdrop-filter: blur(10px);
+
+    margin: auto;
 }
 
 .card-form h1 {
     margin-bottom: 20px;
+}
+
+.card-form img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.card-auth {
+    max-width: 400px;
+}
+
+.card-config-form {
+    max-width: 450px;
+    margin-top: 80px;
+    margin-bottom: 60px;
 }
 
 #conteudo {
@@ -539,7 +569,7 @@ footer {
 
 .sidebar {
     width: 220px;
-    min-height: 100vh;
+    height: auto;
     background-color:#1A1A1A;
     box-sizing: border-box;
     padding: 25px 20px;
@@ -627,7 +657,7 @@ footer {
     flex: 1;
     padding: 35px;
     box-sizing: border-box;
-    
+    width: 100%;
 }
 
 .footer-dash {
@@ -641,9 +671,11 @@ footer {
     }
 
 .topo-dash {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 320px;
     align-items: center;
+    gap: 40px;
+    width: 100%;
 }
 
 .topo-dash h1 {
@@ -652,6 +684,29 @@ footer {
 
 .topo-dash p {
     color: #ccc;
+}
+
+.imagem-topo {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.imagem-topo img {
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+
+}
+
+.texto-topo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.texto-topo h1,
+.texto-topo p {
+    margin: 0;
 }
 
 .usuario-box {
@@ -698,7 +753,9 @@ footer {
 
 .area-baixo {
     display: flex;
-    gap: 150px;
+    justify-content: center;
+    align-items: stretch;
+    gap: 40px;
     flex-wrap: wrap;
     margin-top: 30px;
 }
@@ -706,43 +763,65 @@ footer {
 .painel {
     background-color: #161616;
 
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(34, 197, 94, 0.25);
 
     border-radius: 15px;
 
     padding: 25px;
+    height: 500px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 25px;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
 
-    width: 350px;
+.painel h1 {
+    margin: 0 0 20px 0;
+    margin-top: 0px;
+    margin-bottom: 35px;
+    font-size: 42px;
+    align-self: flex-start;
+    text-align: center;
+}
+
+.painel p {
+    margin: 8px 0;
 }
 
 .progresso-circulo {
-    width: 130px;
-    height: 130px;
-
+    width: 200px !important;
+    height: 200px !important;
+    
     border-radius: 50%;
 
-    border: 18px solid var(--verde-claro);
+    border: 24px solid var(--verde-claro);
     border-left-color: #333;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    margin: 20px auto;
+    margin: 10px auto 25px auto;
 }
 
 .progresso-circulo span {
-    font-size: 26px;
+    font-size: 38px;
     font-weight: bold;
 }
 
 .img-treino {
     width: 100%;
-    height: 150px;
+    max-width: 320px;
+    height: 200px;
     object-fit: cover;
 
-    border-radius: 12px;
-    margin: 10px 0;
+    border-radius: 14px;
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
 
 /* Responsivo */
@@ -776,9 +855,13 @@ footer {
 
 .cards-config {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     flex-wrap: wrap;
-    
+    justify-content: center;
+    align-items: stretch;
+    padding: 40px 0;
+    margin-top: 40px;
+    height: auto;
 }
 
 .config-card {
@@ -870,19 +953,19 @@ footer {
 
 .form-2 {
     width: 90%;
-    max-width: 500px;
+    max-width: 520px;
 
     background-color: rgba(0, 0, 0, 0.78);
 
     border-radius: 20px;
 
-    padding: 20px;
+    padding: 40px;
 
     box-shadow: 0 0 30px rgba(0,0,0,0.6);
 
     backdrop-filter: blur(8px);
 
-    text-align: center;
+
 }
 
 .fundo-form2 {
@@ -890,15 +973,16 @@ footer {
         linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
         url('fundo_principal.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: top center;
     background-repeat: no-repeat;
-    width: 100%;
+
+    background-attachment: fixed;
 
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 140px 20px 60px;
-    box-sizing: border-box;
+
+    padding: 100px 20px 60px;
 }
 
 .form-dieta {
@@ -1005,6 +1089,7 @@ footer {
 .semana-card h2 {
     color: var(--verde-claro);
     margin-top: 0;
+
 }
 
 .semana-card p {
@@ -1017,13 +1102,27 @@ footer {
     margin-top: 15px;
 }
 
-.semana-card:nth-child(1) { animation-delay: 0.5s; }
-.semana-card:nth-child(2) { animation-delay: 0.6s; }
-.semana-card:nth-child(3) { animation-delay: 0.7s; }
-.semana-card:nth-child(4) { animation-delay: 0.8s; }
-.semana-card:nth-child(5) { animation-delay: 0.9s; }
-.semana-card:nth-child(6) { animation-delay: 0.10s; }
-.semana-card:nth-child(7) { animation-delay: 0.11s; }
+.comida-item {
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+
+    padding: 12px;
+    margin-bottom: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.comida-item span {
+    color: #ccc;
+    font-size: 15px;
+}
+
+.comida-item b {
+    color: white;
+}
 
 .receitas-area {
     margin-top: 50px;
@@ -1036,7 +1135,11 @@ footer {
 
 .receitas-grid {
     display: flex;
+    justify-content: center;
+    align-items: stretch;
+
     gap: 22px;
+
     flex-wrap: wrap;
 }
 
@@ -1045,7 +1148,9 @@ footer {
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 18px;
 
-    width: 280px;
+    flex: 1 1 300px;
+    max-width: 380px;
+    min-width: 280px;
 
     overflow: hidden;
 
@@ -1229,3 +1334,43 @@ footer {
     }
 }
 
+.form-login {
+   width: 90%;
+    max-width: 520px;
+    background-color: rgba(0, 0, 0, 0.78);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);  
+}
+
+.page-container {
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 30px;
+}
+
+.banner,
+.banner-main,
+.objetivos,
+.formulario {
+    width: 100%;
+}
+
+.page-config {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 35px;
+}
+
+.fundo-config {
+    min-height: auto;
+    flex: 1;
+    align-items: flex-start;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}

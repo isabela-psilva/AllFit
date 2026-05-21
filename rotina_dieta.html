@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <title>Plano Alimentar</title>
     <link rel="stylesheet" href="Base_Style.css">
-    
+    <link rel="stylesheet" href="dashboardStyle.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <section class="dashboard">
 
         <aside class="sidebar">
-            <img class="logo-dash" src="logo 3.png" alt="AllFit">
+            <img class="logo-dash" src="logo 1.png" alt="AllFit">
 
             <nav class="menu-dash">
                 <a href="dashboard.html">
@@ -34,7 +34,7 @@
                     Exercícios
                 </a>
 
-                <a href="usuario.html">
+                <a href="configuracao.html">
                     <img src="settings.png" alt="">
                     Configurações
                 </a>
@@ -45,158 +45,247 @@
                 Sair
             </a>
         </aside>
+        <div class="page-container">
+            <main class="conteudo-dash">
 
-        <main class="conteudo-dash">
-
-            <div class="topo-dash">
-                <div>
-                    <h1>Seu Plano Alimentar</h1>
-                    <p>Dietas e receitas organizadas para sua semana.</p>
-                </div>
-            </div>
-
-            <section class="resumo-alimentar">
-                <div class="dash-card">
-                    <p>Objetivo</p>
-                    <h2>Emagrecer</h2>
-                    <span>Plano ativo</span>
+                <div class="topo-dash">
+                    <div class="texto-topo">
+                        <div>
+                            <h1>Seu Plano Alimentar</h1>
+                            <p>Dietas e receitas organizadas para sua semana.</p>
+                        </div>
+                    </div>
+                    <div class="imagem-topo">
+                        <img src="diet.png" alt="">
+                    </div>
                 </div>
 
-                <div class="dash-card">
-                    <p>Calorias diárias</p>
-                    <h2>1800 kcal</h2>
-                    <span>Meta sugerida</span>
-                </div>
-
-                <div class="dash-card">
-                    <p>Restrições</p>
-                    <h2>Nenhuma</h2>
-                    <span>Personalizado</span>
-                </div>
-
-                <div class="dash-card">
-                    <p>Ciclo</p>
-                    <h2>7 dias</h2>
-                    <span>Rotina semanal</span>
-                </div>
-            </section>
-
-            <section class="area-plano">
-
-                <div class="semana-card">
-                    <h2>Segunda-feira</h2>
-                    <p><b>Café:</b> Omelete com tomate</p>
-                    <p><b>Almoço:</b> Frango grelhado com arroz integral</p>
-                    <p><b>Lanche:</b> Banana com aveia</p>
-                    <p><b>Jantar:</b> Sopa de legumes</p>
-                    <a href="#receitas" class="primary-button">Ver receitas</a>
-                </div>
-
-                <div class="semana-card">
-                    <h2>Terça-feira</h2>
-                    <p><b>Café:</b> Iogurte natural com frutas</p>
-                    <p><b>Almoço:</b> Peixe assado com batata doce</p>
-                    <p><b>Lanche:</b> Maçã com pasta de amendoim</p>
-                    <p><b>Jantar:</b> Salada com ovos cozidos</p>
-                    <a href="#receitas" class="primary-button">Ver receitas</a>
-                </div>
-
-                <div class="semana-card">
-                    <h2>Quarta-feira</h2>
-                    <p><b>Café:</b> Tapioca com queijo branco</p>
-                    <p><b>Almoço:</b> Carne magra com legumes</p>
-                    <p><b>Lanche:</b> Vitamina de banana</p>
-                    <p><b>Jantar:</b> Omelete verde</p>
-                    <a href="#receitas" class="primary-button">Ver receitas</a>
-                </div>
-
-                <div class="semana-card">
-                    <h2>Quinta-feira</h2>
-                    <p><b>Café:</b> Pão integral com ovo</p>
-                    <p><b>Almoço:</b> Frango desfiado com mandioca</p>
-                    <p><b>Lanche:</b> Mix de frutas</p>
-                    <p><b>Jantar:</b> Creme de abóbora</p>
-                    <a href="#receitas" class="primary-button">Ver receitas</a>
-                </div>
-
-                <div class="semana-card">
-                    <h2>Sexta-feira</h2>
-                    <p><b>Café:</b> Panqueca de banana</p>
-                    <p><b>Almoço:</b> Arroz, feijão e carne magra</p>
-                    <p><b>Lanche:</b> Iogurte com granola</p>
-                    <p><b>Jantar:</b> Salada proteica</p>
-                    <a href="#receitas" class="primary-button">Ver receitas</a>
-                </div>
-
-                <div class="semana-card">
-                    <h2>Sábado</h2>
-                    <p><b>Café:</b> Cuscuz com ovo</p>
-                    <p><b>Almoço:</b> Macarrão integral com frango</p>
-                    <p><b>Lanche:</b> Suco natural e torrada</p>
-                    <p><b>Jantar:</b> Wrap saudável</p>
-                    <a href="#receitas" class="primary-button">Ver receitas</a>
-                </div>
-
-                <div class="semana-card">
-                    <h2>Domingo</h2>
-                    <p><b>Café:</b> Frutas com aveia</p>
-                    <p><b>Almoço:</b> Prato livre equilibrado</p>
-                    <p><b>Lanche:</b> Castanhas e fruta</p>
-                    <p><b>Jantar:</b> Caldo leve</p>
-                    <a href="#receitas" class="primary-button">Ver receitas</a>
-                </div>
-
-            </section>
-
-            <section id="receitas" class="receitas-area">
-
-                <h2>Receitas recomendadas</h2>
-
-                <div class="receitas-grid">
-
-                    <div class="receita-card">
-                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd" alt="Salada">
-                        <h3>Salada Proteica</h3>
-                        <p>Receita leve com ovos, folhas verdes e frango.</p>
-                        <span>320 kcal • 15 min</span>
+                <section class="resumo-alimentar">
+                    <div class="dash-card">
+                        <p>Objetivo</p>
+                        <h2>Emagrecer</h2>
+                        <span>Plano ativo</span>
                     </div>
 
-                    <div class="receita-card">
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Bowl saudável">
-                        <h3>Bowl Saudável</h3>
-                        <p>Arroz integral, legumes, frango e molho natural.</p>
-                        <span>450 kcal • 25 min</span>
+                    <div class="dash-card">
+                        <p>Calorias diárias</p>
+                        <h2>1800 kcal</h2>
+                        <span>Meta sugerida</span>
                     </div>
 
-                    <div class="receita-card">
-                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061" alt="Café saudável">
-                        <h3>Café Energético</h3>
-                        <p>Iogurte, frutas, aveia e sementes.</p>
-                        <span>280 kcal • 10 min</span>
+                    <div class="dash-card">
+                        <p>Restrições</p>
+                        <h2>Nenhuma</h2>
+                        <span>Personalizado</span>
                     </div>
 
-                </div>
+                    <div class="dash-card">
+                        <p>Ciclo</p>
+                        <h2>7 dias</h2>
+                        <span>Rotina semanal</span>
+                    </div>
+                </section>
 
-            </section>
+                <section class="area-plano">
 
-            <section class="lista-compras">
-                <h2>Lista de compras da semana</h2>
+                    <div class="semana-card">
+                        <h2>Segunda-feira</h2>
+                        <div class="comida-item">
+                            <b>Café</b>
+                            <span>Omelete com tomate</span>
+                        </div>
+                        <div class="comida-item">    
+                            <b>Almoço</b> 
+                            <span>Frango grelhado com arroz integral</span>
+                        </div>
+                        <div class="comida-item">    
+                            <b>Lanche</b> 
+                            <span>Banana com aveia</span>
+                        </div>
+                        <div class="comida-item">
+                            <b>Jantar</b> 
+                            <span>Sopa de legumes</span>
+                        </div>
+                        <a href="#receitas" class="primary-button">Ver receitas</a>
+                    </div>
 
-                <div class="compras-grid">
-                    <span>Ovos</span>
-                    <span>Frango</span>
-                    <span>Arroz integral</span>
-                    <span>Banana</span>
-                    <span>Aveia</span>
-                    <span>Legumes</span>
-                    <span>Iogurte natural</span>
-                    <span>Batata doce</span>
-                </div>
-            </section>
+                    <div class="semana-card">
+                        <h2>Terça-feira</h2>
+                        <div class="comida-item">
+                            <b>Café</b> 
+                            <span>Iogurte natural com frutas</span>
+                        </div>
+                        <div class="comida-item">
+                            <b>Almoço</b> 
+                            <span>Peixe assado com batata doce</span>
+                        </div>
+                        <div class="comida-item">
+                            <b>Lanche</b> 
+                            <span>Maçã com pasta de amendoim</span>
+                        </div>
+                        <div class="comida-item">
+                            <b>Jantar</b> 
+                            <span>Salada com ovos cozidos</span>
+                        </div>
+                        <a href="#receitas" class="primary-button">Ver receitas</a>
+                    </div>
+
+                    <div class="semana-card">
+                        <h2>Quarta-feira</h2>
+                        <div class="comida-item">
+                            <b>Café</b> 
+                            <span>Tapioca com queijo branco</span>
+                        </div>
+                        <div class="comida-item">
+                            <b>Almoço</b> 
+                            <span>Carne magra com legumes</span>
+                        </div>
+                        <div class="comida-item">
+                            <b>Lanche</b> 
+                            <span>Vitamina de banana</span>
+                        </div>
+                        <div class="comida-item">
+                            <b>Jantar</b> 
+                            <span>Omelete verde</span>
+                        </div>
+                        <a href="#receitas" class="primary-button">Ver receitas</a>
+                    </div>
+
+                    <div class="semana-card">
+                        <h2>Quinta-feira</h2>
+                        <div class="comida-item">
+                            <b>Café</b> 
+                            <span>Pão integral com ovo</span>
+                        </div>
+                        <div class="comida-item">
+                            <b>Almoço</b> 
+                            <span>Frango desfiado com mandioca</span>
+                        </div>
+                        <div class="comida-item">    
+                            <b>Lanche</b> 
+                            <span>Mix de frutas</span>
+                        </div>
+                        <div class="comida-item">    
+                            <b>Jantar</b> 
+                            <span>Creme de abóbora</span>
+                        </div>    
+                        <a href="#receitas" class="primary-button">Ver receitas</a>
+                    </div>
+
+                    <div class="semana-card">
+                        <h2>Sexta-feira</h2>
+                        <div class="comida-item">
+                            <b>Café</b> 
+                            <span>Panqueca de banana</span>
+                        </div>
+                        <div class="comida-item">    
+                            <b>Almoço</b> 
+                            <span>Arroz, feijão e carne magra</span>
+                        </div>
+                        <div class="comida-item">    
+                            <b>Lanche</b> 
+                            <span>Iogurte com granola</span>
+                        </div>
+                        <div class="comida-item">
+                            <b>Jantar</b> 
+                            <span>Salada proteica</span>
+                        </div>
+                        <a href="#receitas" class="primary-button">Ver receitas</a>
+                    </div>
+
+                    <div class="semana-card">
+                        <h2>Sábado</h2>
+                        <div class="comida-item">
+                            <b>Café</b> 
+                            <span>Cuscuz com ovo</span>
+                        </div>
+                        <div class="comida-item">    
+                            <b>Almoço</b> 
+                            <span>Macarrão integral com frango</span>
+                        </div>
+                        <div class="comida-item">
+                            <b>Lanche</b> 
+                            <span>Suco natural e torrada</span>
+                        </div>
+                        <div class="comida-item">
+                            <b>Jantar</b> 
+                            <span>Wrap saudável</span>
+                        </div>
+                        <a href="#receitas" class="primary-button">Ver receitas</a>
+                    </div>
+
+                    <div class="semana-card">
+                        <h2>Domingo</h2>
+                        <div class="comida-item">
+                            <b>Café</b> 
+                            <span>Frutas com aveia</span>
+                        </div>
+                        <div class="comida-item">    
+                            <b>Almoço</b> 
+                            <span>Prato livre equilibrado</span>
+                        </div>
+                        <div class="comida-item">    
+                            <b>Lanche</b> 
+                            <span>Castanhas e fruta</span>
+                        </div>
+                        <div class="comida-item">    
+                            <b>Jantar</b> 
+                            <span>Caldo leve</span>
+                        </div>    
+                        <a href="#receitas" class="primary-button">Ver receitas</a>
+                    </div>
+
+                </section>
+
+                <section id="receitas" class="receitas-area">
+
+                    <h2>Receitas recomendadas</h2>
+
+                    <div class="receitas-grid">
+
+                        <div class="receita-card">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd" alt="Salada">
+                            <h3>Salada Proteica</h3>
+                            <p>Receita leve com ovos, folhas verdes e frango.</p>
+                            <span>320 kcal • 15 min</span>
+                        </div>
+
+                        <div class="receita-card">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Bowl saudável">
+                            <h3>Bowl Saudável</h3>
+                            <p>Arroz integral, legumes, frango e molho natural.</p>
+                            <span>450 kcal • 25 min</span>
+                        </div>
+
+                        <div class="receita-card">
+                            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061" alt="Café saudável">
+                            <h3>Café Energético</h3>
+                            <p>Iogurte, frutas, aveia e sementes.</p>
+                            <span>280 kcal • 10 min</span>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="lista-compras">
+                    <h2>Lista de compras da semana</h2>
+
+                    <div class="compras-grid">
+                        <span>Ovos</span>
+                        <span>Frango</span>
+                        <span>Arroz integral</span>
+                        <span>Banana</span>
+                        <span>Aveia</span>
+                        <span>Legumes</span>
+                        <span>Iogurte natural</span>
+                        <span>Batata doce</span>
+                    </div>
+                </section>
             
 
-        </main>
-
+            </main>
+        </div>
     </section>
     <footer class="footer-dash">
         <p>AllFit © 2026</p>

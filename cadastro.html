@@ -2,47 +2,48 @@
 <head>
     <meta charset="UTF-8">
     <title>AllFit - Cadastro</title>
-    <link rel="stylesheet" href="baseStyle.css">
+    <link rel="stylesheet" href="Base_Style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js"></script>
 </head>
 <body>
 
     <header>
-        <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
+        <div class="logo"><img width="100px" src="logo 1.png" alt="AllFit"></div>
         <nav>
             <a href="index.html">Início</a>
             <a href="login.html">Login</a>
         </nav>
     </header>
-
+    
     <section class="fundo-imagem">
+           
+            <div class="card-form card-auth">
 
-    <div class="card-form">
+                <h1>Criar Conta</h1>
 
-        <h1>Criar Conta</h1>
+                <input class="form-item" type="text" id="nome" placeholder="Nome completo" />
+                <input class="form-item" type="email" id="email" placeholder="E-mail" />
+                <input class="form-item" type="password" id="senha" placeholder="Senha" />
+                <input class="form-item" type="password" id="confirmarSenha" placeholder="Confirmar senha" />
 
-        <input class="form-item" type="text" id="nome" placeholder="Nome completo" />
-        <input class="form-item" type="email" id="email" placeholder="E-mail" />
-        <input class="form-item" type="password" id="senha" placeholder="Senha" />
-        <input class="form-item" type="password" id="confirmarSenha" placeholder="Confirmar senha" />
+                <div class="botoes">
+                    <button class="primary-button" onclick="cadastrar()">Cadastrar</button>
+                </div>
+                <div id="meuModal" class="modal-container" style="display: none;">
+                    <div class="modal-box">
+                        <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
+                        <br><p></p>
+                        <p id="modalTexto">Mensagem da operação.</p>
+                        <input type="button" id="btnModalOk" class="primary-button" value="Ok">
+                    </div>
+                </div>
 
-        <div class="botoes">
-            <button class="primary-button" onclick="cadastrar()">Cadastrar</button>
-        </div>
-        <div id="meuModal" class="modal-container" style="display: none;">
-            <div class="modal-box">
-                <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
-                <br><p></p>
-                <p id="modalTexto">Mensagem da operação.</p>
-                <input type="button" id="btnModalOk" class="primary-button" value="Ok">
+                <p>Já tem conta? <a href="login.html">Entrar</a></p>
+
             </div>
-        </div>
-
-        <p>Já tem conta? <a href="login.html">Entrar</a></p>
-
-    </div>
-
-</section>
+        
+    </section>
 
     <footer>
         <p>AllFit © 2026</p>
@@ -70,12 +71,7 @@
                 return;
             }
 
-            const idade = 0;
-            const altura = 0;
-            const peso = 0;
-
-
-            localStorage.setItem(email, JSON.stringify({ nome, senha, idade, altura, peso }));
+            localStorage.setItem(email, JSON.stringify({ nome, senha }));
             exibirModal("Sucesso!", "Cadastro realizado com sucesso! Faça o login.", "login.html");
         }
     </script>

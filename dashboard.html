@@ -4,7 +4,6 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="Base_Style.css">
     <link rel="stylesheet" href="dashboardStyle.css">
-    <script src="script.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -12,7 +11,7 @@
     <section class="dashboard">
 
         <aside class="sidebar">
-            <img class="logo-dash" src="logo 3.png" alt="AllFit">
+            <img class="logo-dash" src="logo 1.png" alt="AllFit">
 
             <nav class="menu-dash">
                 <a href="dashboard.html">
@@ -42,76 +41,72 @@
                 Sair
             </a>
         </aside>
+        <div class="page-container">
+            <main class="conteudo-dash">
 
-        <main class="conteudo-dash">
-
-            <div class="topo-dash">
-                <div>
-                    <h1>Olá, Usuário! 👋</h1>
-                    <p>Vamos alcançar seus objetivos juntos!</p>
-
-                </div>
-                <div id="define-profile" style="text-align: right; display: none;">
-                    <h3>Você ainda não definiu seu perfil!</h3>
-                    <button class="primary-button" onclick="window.location.href = 'perfil.html'">Definir perfil</button>
-                </div>
-            </div>
-
-            <section class="cards-dash">
-                <div class="dash-card" id="card-imc">
-                    <p>IMC</p>
-                    <h2>23,4</h2>
-                    <span>Peso normal</span>
-                </div>
-
-                <div class="dash-card" id="card-obj">
-                    <p>Objetivo</p>
-                    <h2>Emagrecer</h2>
-                    <span>Plano ativo</span>
-                </div>
-
-                <div class="dash-card" id="card-treinoPorSemana">
-                    <p>Treinos / Semana</p>
-                    <h2>4</h2>
-                    <span>Rotina semanal</span>
-                </div>
-
-                <div class="dash-card" id="card-planoAtual">
-                    <p>Plano Atual</p>
-                    <h2>Completo</h2>
-                    <span>Dieta + treino</span>
-                </div>
-            </section>
-
-            <section class="area-baixo">
-
-                <div class="painel">
-                    <h3>Seu progresso</h3>
-
-                    <div class="progresso-circulo">
-                        <span>65%</span>
+                <div class="topo-dash">
+                    <div>
+                        <h1>Olá, Usuário!</h1>
+                        <p>Vamos alcançar seus objetivos juntos!</p>
                     </div>
 
-                    <p>Muito bem! Você está no caminho certo para alcançar seus objetivos.</p>
-
-                    
                 </div>
 
-                <div class="painel">
-                    <h3>Próximo treino</h3>
+                <section class="cards-dash">
+                    <div class="dash-card">
+                        <p>IMC</p>
+                        <h2>23,4</h2>
+                        <span>Peso normal</span>
+                    </div>
 
-                    <img class="img-treino" src="treino_perna.avif" alt="Treino">
+                    <div class="dash-card">
+                        <p>Objetivo</p>
+                        <h2>Emagrecer</h2>
+                        <span>Plano ativo</span>
+                    </div>
 
-                    <h2>Treino de Pernas</h2>
-                    <p>Hoje - 18:00</p>
+                    <div class="dash-card">
+                        <p>Treinos / Semana</p>
+                        <h2>4</h2>
+                        <span>Rotina semanal</span>
+                    </div>
+
+                    <div class="dash-card">
+                        <p>Plano Atual</p>
+                        <h2>Completo</h2>
+                        <span>Dieta + treino</span>
+                    </div>
+                </section>
+
+                <section class="area-baixo">
+
+                    <div class="painel">
+                        <h1>Seu progresso</h1>
+
+                        <div class="progresso-circulo">
+                            <span>65%</span>
+                        </div>
+
+                        <p>Muito bem! Você está no caminho certo para alcançar seus objetivos.</p>
 
                     
-                </div>
+                    </div>
 
-            </section>
+                    <div class="painel">
+                        <h1>Próximo treino</h1>
 
-        </main>
+                        <img class="img-treino" src="treino_perna.avif" alt="Treino">
 
+                        <h2>Treino de Pernas</h2>
+                        <p>Hoje - 18:00</p>
+
+                    
+                    </div>
+
+                </section>
+
+            </main>
+        </div>
     </section>
 
     <script>
@@ -119,41 +114,15 @@
         console.log("Email do usuário logado:", usuarioLogadoEmail);
         const usuario = usuarioLogadoEmail ? JSON.parse(localStorage.getItem(usuarioLogadoEmail)) : null;
 
-        
         onload = () => {
-
-            const imcTitle = document.getElementById('card-imc').querySelector('h2');
-            const objTitle = document.getElementById('card-obj').querySelector('h2');
             if (usuario) {
-                if (usuario.peso !== 0) {
-                    let imc = usuario.peso / (usuario.altura * usuario.altura)
-                    let sugestao = calcularSugestao(imc);
-                    imcTitle.innerText = imc.toFixed(2);
-                    objTitle.innerText = sugestao;
-                }
-                else {
-                    imcTitle.innerText = "não definido";
-                    objTitle.innerText = "não definido";
-                    document.getElementById('define-profile').style = 'display: block';
-                }
-
                 const primeiroNome = usuario.nome.split(' ')[0];
                 document.querySelector('.topo-dash h1').textContent = 'Olá, ' + primeiroNome + ' 👋';
             } else {
-                exibirModal("Erro!", "O usuário não está logado. Faça login para continuar.", "login.html");
-                // document.querySelector('.topo-dash h1').textContent = 'Olá, Usuário! 👋';
+                document.querySelector('.topo-dash h1').textContent = 'Olá, Usuário! 👋';
             }
         }
-
     </script>
-    <div id="meuModal" class="modal-container" style="display: none;">
-        <div class="modal-box">
-            <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
-            <br><p></p>
-            <p id="modalTexto">Mensagem da operação.</p>
-            <input type="button" id="btnModalOk" class="primary-button" value="Ok">
-        </div>
-    </div>
     <footer class="footer-dash">
         <p>AllFit © 2026</p>
     </footer>

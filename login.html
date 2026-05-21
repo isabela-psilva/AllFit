@@ -3,12 +3,13 @@
     <meta charset="UTF-8">
     <title>AllFit - Login</title>
     <script src="script.js"></script>
-    <link rel="stylesheet" href="baseStyle.css">
+    <link rel="stylesheet" href="Base_Style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
     <header>
-        <div class="logo"><img width="100px" src="logo 3.png" alt="AllFit"></div>
+        <div class="logo"><img width="100px" src="logo 1.png" alt="AllFit"></div>
         <nav>
             <a href="index.html">Início</a>
             <a href="cadastro.html">Cadastro</a>
@@ -20,27 +21,26 @@
 
 <section class="fundo-imagem">
 
-    <div class="card-form">
+    <div class="card-form card-auth">
 
-        <h1>Entrar</h1>
+            <h1>Entrar</h1>
 
-        <input class="form-item" type="email" id="email" placeholder="E-mail" />
-        <input class="form-item" type="password" id="senha" placeholder="Senha" />
+            <input class="form-item" type="email" id="email"  placeholder="E-mail">
+            <input class="form-item" type="password" id="senha" placeholder="Senha">
 
-        <div class="botoes">
-            <button class="primary-button" onclick="login()">Entrar</button>
-        </div>
-        <div id="meuModal" class="modal-container" style="display: none;">
-            <div class="modal-box">
-                <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
-                <br>
-                <p id="modalTexto">Mensagem da operação.</p>
-                <input type="button" id="btnModalOk" class="primary-button" value="Ok">
+            <div class="botoes">
+                <button class="primary-button" onclick="login()">Entrar</button>
             </div>
-        </div>
+            <div id="meuModal" class="modal-container" style="display: none;">
+                <div class="modal-box">
+                    <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
+                    <br>
+                    <p id="modalTexto">Mensagem da operação.</p>
+                    <input type="button" id="btnModalOk" class="primary-button" value="Ok">
+                </div>
+            </div>
 
-        <p>Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
-
+            <p>Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>    
     </div>
 
 </section>
@@ -67,12 +67,7 @@
                 exibirModal("Erro!", "Senha incorreta!");
             } else {
                 localStorage.setItem('usuarioLogado', email);
-                if (usuario.idade === 0) {
-                    exibirModal("Aviso!", "Você ainda não definiu seu perfil, defina agora.", "perfil.html");
-                }
-                else {
-                    exibirModal("Olá!", "Bem-vindo(a), " + usuario.nome + "!", "dashboard.html");
-                }
+                exibirModal("Olá!", "Bem-vindo(a), " + usuario.nome + "!", "dashboard.html");
             }
         }
     </script>
