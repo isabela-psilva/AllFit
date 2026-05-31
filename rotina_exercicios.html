@@ -24,12 +24,11 @@
                 Meu Perfil
             </a>
 
-            <a href="dieta.html">
-                <img src="diet.png" alt="">
-                Alimentação
-            </a>
-
-            <a href="rotinaExercicio.html">
+            <a href="#" onclick="abrirDieta()">
+                    <img src="diet.png" alt="">
+                    Alimentação
+                </a>
+            <a href="#" onclick="abrirExercicios()">
                 <img src="dumbbell.png" alt="">
                 Exercícios
             </a>
@@ -61,198 +60,14 @@
                 </div>
             </div>
 
-            <section class="resumo-exercicio">
+            <section class="resumo-exercicio" id="resumoExercicio"></section>
 
-                <div class="dash-card">
-                    <p>Tipo</p>
-                    <h2>Musculação</h2>
-                    <span>Treino principal</span>
-                </div>
-
-                <div class="dash-card">
-                    <p>Frequência</p>
-                    <h2>5x/semana</h2>
-                    <span>Segunda a Sexta</span>
-                </div>
-
-                <div class="dash-card">
-                    <p>Horário</p>
-                    <h2>18:00</h2>
-                    <span>Duração média: 60 min</span>
-                </div>
-
-                <div class="dash-card">
-                    <p>Local</p>
-                    <h2>Academia</h2>
-                    <span>Equipamentos disponíveis</span>
-                </div>
-
-            </section>
-
-            <section class="area-treino">
-
-                <div class="treino-card">
-                    <h2>Segunda-feira</h2>
-                    <h3>Inferiores</h3>
-
-                    <div class="exercicio-item">
-                        <b>Agachamento livre</b>
-                        <span>4 séries • 12 repetições • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Leg press</b>
-                        <span>4 séries • 10 repetições • Intensidade alta</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Cadeira extensora</b>
-                        <span>3 séries • 12 repetições • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Mesa flexora</b>
-                        <span>3 séries • 12 repetições • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Panturrilha em pé</b>
-                        <span>4 séries • 15 repetições • Intensidade leve</span>
-                    </div>
-                </div>
-
-                <div class="treino-card">
-                    <h2>Terça-feira</h2>
-                    <h3>Superiores</h3>
-
-                    <div class="exercicio-item">
-                        <b>Supino reto</b>
-                        <span>4 séries • 10 repetições • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Remada baixa</b>
-                        <span>4 séries • 12 repetições • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Desenvolvimento de ombro</b>
-                        <span>3 séries • 10 repetições • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Rosca direta</b>
-                        <span>3 séries • 12 repetições • Intensidade leve</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Tríceps pulley</b>
-                        <span>3 séries • 12 repetições • Intensidade leve</span>
-                    </div>
-                </div>
-
-                <div class="treino-card">
-                    <h2>Quarta-feira</h2>
-                    <h3>Cardio + Abdômen</h3>
-
-                    <div class="exercicio-item">
-                        <b>Caminhada inclinada</b>
-                        <span>20 minutos • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Prancha abdominal</b>
-                        <span>3 séries • 40 segundos • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Abdominal infra</b>
-                        <span>3 séries • 15 repetições • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Bicicleta ergométrica</b>
-                        <span>15 minutos • Intensidade leve</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Alongamento geral</b>
-                        <span>10 minutos • Intensidade leve</span>
-                    </div>
-                </div>
-
-                <div class="treino-card">
-                    <h2>Quinta-feira</h2>
-                    <h3>Inferiores + Glúteos</h3>
-
-                    <div class="exercicio-item">
-                        <b>Avanço com halteres</b>
-                        <span>3 séries • 12 repetições • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Elevação pélvica</b>
-                        <span>4 séries • 12 repetições • Intensidade alta</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Abdutora</b>
-                        <span>3 séries • 15 repetições • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Stiff</b>
-                        <span>3 séries • 10 repetições • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Panturrilha sentada</b>
-                        <span>4 séries • 15 repetições • Intensidade leve</span>
-                    </div>
-                </div>
-
-                <div class="treino-card">
-                    <h2>Sexta-feira</h2>
-                    <h3>Funcional</h3>
-
-                    <div class="exercicio-item">
-                        <b>Polichinelo</b>
-                        <span>3 séries • 40 segundos • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Agachamento livre</b>
-                        <span>3 séries • 15 repetições • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Flexão adaptada</b>
-                        <span>3 séries • 10 repetições • Intensidade leve</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Corrida parada</b>
-                        <span>3 séries • 45 segundos • Intensidade média</span>
-                    </div>
-
-                    <div class="exercicio-item">
-                        <b>Prancha</b>
-                        <span>3 séries • 30 segundos • Intensidade média</span>
-                    </div>
-                </div>
-
-            </section>
+            <section class="area-treino" id="areaTreino"></section>
 
             <section class="orientacoes-treino">
                 <h2>Orientações do plano</h2>
 
-                <div class="orientacoes-grid">
-                    <span>Aquecimento de 5 a 10 minutos</span>
-                    <span>Intervalo entre séries: 45 a 90 segundos</span>
-                    <span>Manter hidratação durante o treino</span>
-                    <span>Alongar após finalizar</span>
-                    <span>Evitar exercícios com dor ou desconforto</span>
-                </div>
+                <div class="orientacoes-grid" id="orientacoesGrid"></div>
             </section>
 
         </main>
@@ -261,6 +76,287 @@
     <footer class="footer-dash">
         <p>AllFit © 2026</p>
     </footer>
+    <script>
 
+        const emailLogado = localStorage.getItem("usuarioLogado");
+
+        const treino = JSON.parse(
+            localStorage.getItem(`treino_${emailLogado}`)
+        );
+
+        window.onload = function () {
+
+            if (!treino) {
+                exibirTreinoVazio();
+            } else {
+                preencherTreino();
+            }
+
+        };
+
+        function exibirTreinoVazio() {
+
+            document.getElementById("resumoExercicio").innerHTML = `
+            <div class="dash-card">
+                <p>Tipo</p>
+                <h2>Não definido</h2>
+                <span>Sem rotina</span>
+            </div>
+
+            <div class="dash-card">
+                <p>Frequência</p>
+                <h2>--</h2>
+                <span>Sem rotina</span>
+            </div>
+
+            <div class="dash-card">
+                <p>Horário</p>
+                <h2>--</h2>
+                <span>Sem rotina</span>
+            </div>
+
+            <div class="dash-card">
+                <p>Local</p>
+                <h2>--</h2>
+                <span>Sem rotina</span>
+            </div>
+            `;
+
+            document.getElementById("areaTreino").innerHTML = `
+            <div class="treino-card" style="grid-column:1/-1;text-align:center;">
+                <h2>Nenhum plano de exercícios cadastrado</h2>
+
+                <p>
+                    Crie sua rotina para receber exercícios personalizados.
+                </p>
+
+                <br>
+
+                <a href="rotinaExercicio.html"
+                    class="primary-button">
+                    Criar plano
+                </a>
+            </div>
+            `;
+
+            document.getElementById("orientacoesGrid").innerHTML = `
+            <span>Nenhuma orientação disponível.</span>
+            `;
+        }
+
+        function preencherTreino() {
+
+            document.getElementById("resumoExercicio").innerHTML = `
+            <div class="dash-card">
+                <p>Tipo</p>
+                <h2>${treino.tipoExercicio}</h2>
+                <span>Treino principal</span>
+            </div>
+
+            <div class="dash-card">
+                <p>Frequência</p>
+                <h2>${treino.diasTreino}x</h2>
+                <span>${treino.dias.join(", ")}</span>
+            </div>
+
+            <div class="dash-card">
+                <p>Horário</p>
+                <h2>${treino.horarioInicio}</h2>
+                <span>${treino.duracao} min</span>
+            </div>
+
+            <div class="dash-card">
+                <p>Local</p>
+                <h2>${treino.local}</h2>
+                <span>Local escolhido</span>
+            </div>
+            `;
+
+            gerarTreinosAutomaticos();
+        }
+
+        function gerarTreinosAutomaticos() {
+
+            let html = "";
+
+            treino.dias.forEach(dia => {
+
+                html += `
+                <div class="treino-card">
+
+                    <h2>${formatarDia(dia)}</h2>
+
+                    <h3>${tituloTreino()}</h3>
+
+                    ${listaExercicios()}
+
+                </div>
+                `;
+
+            });
+
+            document.getElementById("areaTreino").innerHTML = html;
+
+            gerarOrientacoes();
+        }
+
+        function formatarDia(dia){
+
+            const nomes = {
+            segunda: "Segunda-feira",
+            terca: "Terça-feira",
+            quarta: "Quarta-feira",
+            quinta: "Quinta-feira",
+            sexta: "Sexta-feira"
+        };
+
+        return nomes[dia] || dia;
+    }
+
+    function tituloTreino() {
+
+        const usuario = JSON.parse(
+            localStorage.getItem(emailLogado)
+        );
+
+        if (!usuario) return "Treino Geral";
+
+        let imc =
+        usuario.peso /
+        (usuario.altura * usuario.altura);
+
+        if (imc < 18.5)
+        return "Hipertrofia";
+
+        if (imc > 25)
+        return "Emagrecimento";
+
+        return "Condicionamento";
+    }
+
+    function listaExercicios() {
+
+        const usuario = JSON.parse(
+            localStorage.getItem(emailLogado)
+        );
+
+        if (!usuario) {
+            return `
+            <div class="exercicio-item">
+                <b>Defina seu perfil primeiro</b>
+                <span>Sem exercícios disponíveis</span>
+            </div>
+            `;
+        }
+
+        let imc =
+        usuario.peso /
+        (usuario.altura * usuario.altura);
+
+        if (imc < 18.5) {
+
+            return `
+            <div class="exercicio-item">
+                <b>Supino reto</b>
+                <span>4 séries • 10 repetições</span>
+            </div>
+
+            <div class="exercicio-item">
+                <b>Agachamento livre</b>
+                <span>4 séries • 10 repetições</span>
+            </div>
+
+            <div class="exercicio-item">
+                <b>Remada baixa</b>
+                <span>4 séries • 10 repetições</span>
+            </div>
+
+            <div class="exercicio-item">
+                <b>Desenvolvimento</b>
+                <span>3 séries • 12 repetições</span>
+            </div>
+            `;
+        }
+
+        if (imc > 25) {
+
+            return `
+            <div class="exercicio-item">
+                <b>Caminhada</b>
+                <span>30 minutos</span>
+            </div>
+
+            <div class="exercicio-item">
+                <b>Bicicleta</b>
+                <span>20 minutos</span>
+            </div>
+
+            <div class="exercicio-item">
+                <b>Prancha</b>
+                <span>3 séries • 30 segundos</span>
+            </div>
+
+            <div class="exercicio-item">
+                <b>Abdominal</b>
+                <span>3 séries • 15 repetições</span>
+            </div>
+            `;
+        }
+
+        return `
+        <div class="exercicio-item">
+            <b>Alongamento</b>
+            <span>10 minutos</span>
+        </div>
+
+        <div class="exercicio-item">
+            <b>Corrida leve</b>
+            <span>20 minutos</span>
+        </div>
+
+        <div class="exercicio-item">
+            <b>Abdominal</b>
+            <span>3 séries • 15 repetições</span>
+        </div>
+
+        <div class="exercicio-item">
+            <b>Polichinelo</b>
+            <span>3 séries • 30 segundos</span>
+        </div>
+        `;
+    }
+
+    function gerarOrientacoes() {
+
+        document.getElementById("orientacoesGrid").innerHTML = `
+        <span>Aquecimento de 10 minutos</span>
+        <span>Hidratação durante o treino</span>
+        <span>Alongamento após finalizar</span>
+        <span>Respeitar limites físicos</span>
+        <span>Manter frequência semanal</span>
+        `;
+    }
+    function abrirDieta() {
+        const emailLogado = localStorage.getItem("usuarioLogado");
+        const dieta = localStorage.getItem(`dieta_${emailLogado}`);
+
+        if (dieta) {
+            window.location.href = "rotina_dieta.html";
+        } else {
+            window.location.href = "dieta.html";
+        }
+    }
+
+    function abrirExercicios() {
+        const emailLogado = localStorage.getItem("usuarioLogado");
+        const treino = localStorage.getItem(`treino_${emailLogado}`);
+
+        if (treino) {
+            window.location.href = "rotina_exercicios.html";
+        } else {
+            window.location.href = "rotinaExercicio.html";
+        }
+    }
+</script>
 </body>
 </html>

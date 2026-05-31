@@ -793,24 +793,56 @@ footer {
 }
 
 .progresso-circulo {
-    width: 200px !important;
-    height: 200px !important;
-    
-    border-radius: 50%;
-
-    border: 24px solid var(--verde-claro);
-    border-left-color: #333;
-
+    position: relative;
+    width: 220px;
+    height: 220px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    background: none !important;
+    border: none !important;
+}
 
-    margin: 10px auto 25px auto;
+.progresso-circulo::before {
+    display: none !important;
+}
+
+.progresso-circulo svg {
+    position: absolute;
+    transform: rotate(-90deg);
+}
+
+.progresso-circulo circle {
+    fill: none;
+    stroke-width: 20;
+}
+
+.progresso-circulo .bg {
+    stroke: #333;
+}
+
+.progresso-circulo .progress {
+    stroke: #27AE60;
+    stroke-width: 20;
+    fill: none;
+    stroke-dasharray: 565;
+    stroke-dashoffset: 565;
+    transition: 0.5s;
 }
 
 .progresso-circulo span {
-    font-size: 38px;
+    position: relative;
+    z-index: 2;
+    font-size: 36px;
     font-weight: bold;
+    color: white;
+}
+
+#textoProgresso {
+    margin-top: 20px;
+    max-width: 360px;
+    text-align: center;
 }
 
 .img-treino {

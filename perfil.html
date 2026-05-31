@@ -159,13 +159,13 @@
             const emailLogado = localStorage.getItem('usuarioLogado');
             const usuario = JSON.parse(localStorage.getItem(emailLogado))
 
-            usuario.idade = idade.value;
-            usuario.altura = altura.value;
-            usuario.peso = peso.value;
+            usuario.idade = Number(document.getElementById("idade").value);
+            usuario.altura = Number(document.getElementById("altura").value);
+            usuario.peso = Number(document.getElementById("peso").value);
 
             localStorage.setItem(emailLogado, JSON.stringify(usuario));
 
-            exibirModal("Sucesso!", "Perfil salvo com sucesso!", "usuario_logado.html");
+            exibirModal("Sucesso!", "Perfil salvo com sucesso!", "dashboard.html");
         }
     </script>
 

@@ -53,52 +53,55 @@
         <p>AllFit © 2026</p>
     </footer>
     <script>
-     function deletarConta() {
+        function deletarConta() {
 
-     let confirmacao = document.getElementById("confirmacao");
-     let senha = document.getElementById("senha");
+            let confirmacao = document.getElementById("confirmacao");
+            let senha = document.getElementById("senha");
 
-     let senhaValor = senha.value;
+            let senhaValor = senha.value.trim();
 
-     
-     if (!confirmacao.checked) {
-        exibirModal("Atenção!", "Você precisa confirmar que deseja deletar a conta!");
-        return;
-     }
+            if (!confirmacao.checked) {
+                exibirModal("Atenção!", "Você precisa confirmar que deseja deletar a conta!");
+                return;
+            }
 
-     
-     let usuarioEmail = localStorage.key(0);
-     let usuario = JSON.parse(localStorage.getItem(usuarioEmail));
+            let usuarioEmail = localStorage.getItem("usuarioLogado");
 
-     // 🔴 EXCEÇÃO 2.a1 (senha incorreta)
-     if (!usuario || usuario.senha !== senhaValor) {
-        exibirModal("Erro!", "Senha incorreta!", null, senha);
-        return;
-     }
+            if (!usuarioEmail) {
+                exibirModal("Erro!", "Nenhum usuário está logado.", "login.html");
+                return;
+            }
 
-    
-     let certeza = confirm("Tem certeza absoluta que deseja excluir sua conta?");
+            let usuario = JSON.parse(localStorage.getItem(usuarioEmail));
 
-     if (!certeza) {
-        return;
-     }
+            if (!usuario || usuario.senha !== senhaValor) {
+                exibirModal("Erro!", "Senha incorreta!", null, senha);
+                return;
+            }
 
-    
-     localStorage.removeItem(usuarioEmail);
+            let certeza = confirm("Tem certeza absoluta que deseja excluir sua conta?");
 
-     exibirModal("Sucesso!", "Conta deletada com sucesso!", "index.html");
-     }
+            if (!certeza) {
+                return;
+            }
 
-     
-     function cancelar() {
-     let confirmar = confirm("Deseja cancelar a operação?");
+            localStorage.removeItem(usuarioEmail);
+            localStorage.removeItem("usuarioLogado");
+            localStorage.removeItem(`dieta_${usuarioEmail}`);
+            localStorage.removeItem(`treino_${usuarioEmail}`);
 
-     if (confirmar) {
-        window.location.href = "configuracao.html";
-     }
-     }
+            exibirModal("Sucesso!", "Conta deletada com sucesso!", "index.html");
+        }
+
+        function cancelar() {
+            let confirmar = confirm("Deseja cancelar a operação?");
+
+            if (confirmar) {
+                window.location.href = "configuracao.html";
+            }
+        }
     </script>
-    </body>
+</body>
     
 
 </html>

@@ -23,11 +23,11 @@
                     <img src="profile.png" alt="">
                     Meu Perfil
                 </a>
-                <a href="dieta.html">
+                <a href="#" onclick="abrirDieta()">
                     <img src="diet.png" alt="">
                     Alimentação
                 </a>
-                <a href="rotinaExercicio.html">
+                <a href="#" onclick="abrirExercicios()">
                     <img src="dumbbell.png" alt="">
                     Exercícios
                 </a>
@@ -49,6 +49,10 @@
                     <div>
                         <h1>Olá, Usuário!</h1>
                         <p>Vamos alcançar seus objetivos juntos!</p>
+                    </div>
+
+                    <div class="imagem-topo">
+                        <img src="logo.png" alt="">
                     </div>
 
                     <div id="define-profile" style="text-align: right; display: none;">
@@ -84,28 +88,25 @@
                 </section>
 
                 <section class="area-baixo">
-
                     <div class="painel">
                         <h1>Seu progresso</h1>
-
                         <div class="progresso-circulo">
-                            <span>65%</span>
+                            <svg width="220" height="220">
+                                <circle class="bg" cx="110" cy="110" r="90"></circle>
+                                <circle class="progress" cx="110" cy="110" r="90"></circle>
+                            </svg>
+
+                            <span id="progressoTexto">0%</span>
                         </div>
-
-                        <p>Muito bem! Você está no caminho certo para alcançar seus objetivos.</p>
-
-                    
+                        <p id="textoProgresso">
+                            Crie seu perfil e uma rotina para acompanhar seu progresso.
+                        </p>
                     </div>
-
                     <div class="painel">
                         <h1>Próximo treino</h1>
-
-                        <img class="img-treino" src="treino_perna.avif" alt="Treino">
-
-                        <h2>Treino de Pernas</h2>
-                        <p>Hoje - 18:00</p>
-
-                    
+                        <img class="img-treino" src="treino_perna.avif" alt="Treino" style="display:none;">
+                        <h2>Não definido</h2>
+                        <p>Crie uma rotina de exercícios.</p>
                     </div>
 
                 </section>
@@ -114,35 +115,6 @@
         </div>
     </section>
 
-    <script>
-        const usuarioLogadoEmail = localStorage.getItem('usuarioLogado');
-        console.log("Email do usuário logado:", usuarioLogadoEmail);
-        const usuario = usuarioLogadoEmail ? JSON.parse(localStorage.getItem(usuarioLogadoEmail)) : null;
-
-        onload = () => {
-            const imcTitle = document.getElementById('card-imc').querySelector('h2');
-            const objTitle = document.getElementById('card-obj').querySelector('h2');
-
-            if (usuario) {
-                if (usuario.peso !== 0) {
-                    let imc = usuario.peso / (usuario.altura * usuario.altura);
-                    let sugestao = calcularSugestao(imc);
-                    imcTitle.innerText = imc.toFixed(2);
-                    objTitle.innerText = sugestao;
-                }
-                else {
-                    imcTitle.innerText = "não definido";
-                    objTitle.innerText = "não definido";
-                    document.getElementById('define-profile').style = 'display: block';
-                }
-                const primeiroNome = usuario.nome.split(' ')[0];
-                document.querySelector('.topo-dash h1').textContent = 'Olá, ' + primeiroNome + ' 👋';
-            } else {
-                exibirModal("Erro!", "O usuário não está logado. Faça login para continuar.", "login.html");
-                // document.querySelector('.topo-dash h1').textContent = 'Olá, Usuário! 👋';
-            }
-        }
-    </script>
     <div id="meuModal" class="modal-container" style="display: none;">
         <div class="modal-box">
             <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
@@ -154,5 +126,180 @@
     <footer class="footer-dash">
         <p>AllFit © 2026</p>
     </footer>
+    <script>
+        const usuarioLogadoEmail = localStorage.getItem("usuarioLogado");
+        const usuario = usuarioLogadoEmail ? JSON.parse(localStorage.getItem(usuarioLogadoEmail)) : null;
+
+        const dieta = usuarioLogadoEmail ? JSON.parse(localStorage.getItem(`dieta_${usuarioLogadoEmail}`)) : null;
+        const treino = usuarioLogadoEmail ? JSON.parse(localStorage.getItem(`treino_${usuarioLogadoEmail}`)) : null;
+
+        window.onload = () => {
+            if (!usuario) {
+                exibirModal("Erro!", "O usuário não está logado. Faça login para continuar.", "login.html");
+                return;
+            }
+
+            const primeiroNome = usuario.nome.split(" ")[0];
+            document.querySelector(".topo-dash h1").textContent = "Olá, " + primeiroNome + " 👋";
+
+            atualizarCards();
+            atualizarPaineis();
+        };
+
+        function usuarioTemPerfil() {
+            return usuario.idade && usuario.altura && usuario.peso &&
+            Number(usuario.altura) > 0 && Number(usuario.peso) > 0;
+        }
+
+        function atualizarCards() {
+            const temPerfil = usuarioTemPerfil();
+
+            if (!temPerfil) {
+                document.getElementById("define-profile").style.display = "block";
+
+                document.querySelector("#card-imc h2").innerText = "Não definido";
+                document.querySelector("#card-imc span").innerText = "Cadastre seu perfil";
+
+                document.querySelector("#card-obj h2").innerText = "Não definido";
+                document.querySelector("#card-obj span").innerText = "Cadastre seu perfil";
+            } else {
+                document.getElementById("define-profile").style.display = "none";
+
+                const imc = Number(usuario.peso) / (Number(usuario.altura) * Number(usuario.altura));
+                const objetivo = calcularSugestao(imc);
+
+                document.querySelector("#card-imc h2").innerText = imc.toFixed(2);
+                document.querySelector("#card-imc span").innerText = classificarIMC(imc);
+
+                document.querySelector("#card-obj h2").innerText = objetivo;
+                document.querySelector("#card-obj span").innerText = "Baseado no perfil";
+            }
+
+            if (!treino) {
+                document.querySelector("#card-treinoPorSemana h2").innerText = "Não definido";
+                document.querySelector("#card-treinoPorSemana span").innerText = "Sem rotina";
+            } else {
+                document.querySelector("#card-treinoPorSemana h2").innerText = treino.dias.length + "x/semana";
+                document.querySelector("#card-treinoPorSemana span").innerText = "Rotina semanal";
+            }
+
+            if (!dieta && !treino) {
+                document.querySelector("#card-planoAtual h2").innerText = "Não definido";
+                document.querySelector("#card-planoAtual span").innerText = "Sem plano ativo";
+            } else if (dieta && treino) {
+                document.querySelector("#card-planoAtual h2").innerText = "Completo";
+                document.querySelector("#card-planoAtual span").innerText = "Dieta + treino";
+            } else if (dieta) {
+                document.querySelector("#card-planoAtual h2").innerText = "Dieta";
+                document.querySelector("#card-planoAtual span").innerText = "Plano alimentar ativo";
+            } else {
+                document.querySelector("#card-planoAtual h2").innerText = "Exercício";
+                document.querySelector("#card-planoAtual span").innerText = "Treino ativo";
+            }
+        }
+
+        function atualizarPaineis() {
+            const paineis = document.querySelectorAll(".painel");
+
+            const temTreino =
+            treino &&
+            treino.dias &&
+            treino.dias.length > 0 &&
+            treino.horarioInicio;
+
+            if (!temTreino) {
+                atualizarProgresso(0);
+
+                document.getElementById("textoProgresso").innerText =
+                "Crie seu perfil e uma rotina para acompanhar seu progresso.";
+
+                paineis[1].querySelector("img").style.display = "none";
+                paineis[1].querySelector("h2").innerText = "Não definido";
+                paineis[1].querySelector("p").innerText = "Crie uma rotina de exercícios.";
+
+                return;
+            }
+
+            atualizarProgresso(65);
+
+            document.getElementById("textoProgresso").innerText =
+            "Muito bem! Você está no caminho certo para alcançar seus objetivos.";
+
+            paineis[1].querySelector("img").style.display = "block";
+
+            const primeiroDia = treino.dias[0] || "segunda";
+
+            paineis[1].querySelector("h2").innerText =
+            "Treino de " + formatarDia(primeiroDia);
+
+            paineis[1].querySelector("p").innerText =
+            "Hoje - " + treino.horarioInicio;
+        }
+
+        function classificarIMC(imc) {
+            if (imc < 18.5) return "Abaixo do peso";
+            if (imc < 25) return "Peso normal";
+            if (imc < 30) return "Sobrepeso";
+            if (imc < 35) return "Obesidade Grau I";
+            if (imc < 40) return "Obesidade Grau II";
+            return "Obesidade Grau III";
+        }
+
+        function formatarDia(dia) {
+            const nomes = {
+            segunda: "Segunda-feira",
+            terca: "Terça-feira",
+            quarta: "Quarta-feira",
+            quinta: "Quinta-feira",
+            sexta: "Sexta-feira"
+        };
+
+        return nomes[dia] || dia;
+    }
+
+    function atualizarProgresso(valor) {
+        const progress = document.querySelector(".progress");
+        const texto = document.getElementById("progressoTexto");
+
+        const radius = 90;
+        const circumference = 2 * Math.PI * radius;
+
+        let porcentagem = Number(valor);
+
+        if (porcentagem < 0) porcentagem = 0;
+        if (porcentagem > 100) porcentagem = 100;
+
+        progress.style.strokeDasharray = circumference;
+        progress.style.strokeDashoffset = circumference;
+
+        if (porcentagem > 0) {
+            progress.style.strokeDashoffset =
+            circumference - (porcentagem / 100) * circumference;
+        }
+
+        texto.innerText = porcentagem + "%";
+    }
+    function abrirDieta() {
+        const emailLogado = localStorage.getItem("usuarioLogado");
+        const dieta = localStorage.getItem(`dieta_${emailLogado}`);
+
+        if (dieta) {
+            window.location.href = "rotina_dieta.html";
+        } else {
+            window.location.href = "dieta.html";
+        }
+    }
+
+    function abrirExercicios() {
+        const emailLogado = localStorage.getItem("usuarioLogado");
+        const treino = localStorage.getItem(`treino_${emailLogado}`);
+
+        if (treino) {
+            window.location.href = "rotina_exercicios.html";
+        } else {
+            window.location.href = "rotinaExercicio.html";
+        }
+    }
+</script>
 </body>
 </html>
