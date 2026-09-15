@@ -1,0 +1,17 @@
+.formulario {
+    background-color: var(--bg-primary);
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px;
+}
+
+.formulario button {
+    margin-top: 10px;
+}
+
+footer {
+    background-color: black;
+    text-align: center;
+    padding: 15px;
+}

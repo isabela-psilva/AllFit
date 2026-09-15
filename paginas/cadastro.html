@@ -2,17 +2,17 @@
 <head>
     <meta charset="UTF-8">
     <title>AllFit - Cadastro</title>
-    <link rel="stylesheet" href="Base_Style.css">
+    <link rel="stylesheet" href="../estilos/Base_Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
+    <script src="../script/script.js"></script>
 </head>
 <body>
 
     <header>
-        <div class="logo"><img width="100px" src="logo 1.png" alt="AllFit"></div>
+        <div class="logo"><img width="100px" src="../imagens/logo 1.png" alt="AllFit"></div>
         <nav>
-            <a href="index.html">Início</a>
-            <a href="login.html">Login</a>
+            <a href="../paginas/index.html">Início</a>
+            <a href="../paginas/login.html">Login</a>
         </nav>
     </header>
     
@@ -39,7 +39,7 @@
                     </div>
                 </div>
 
-                <p>Já tem conta? <a href="login.html">Entrar</a></p>
+                <p>Já tem conta? <a href="../paginas/login.html">Entrar</a></p>
 
             </div>
         
@@ -76,7 +76,7 @@
             const peso = 0;
 
             localStorage.setItem(email, JSON.stringify({ nome, senha, idade, altura, peso }));
-            exibirModal("Sucesso!", "Cadastro realizado com sucesso! Faça o login.", "login.html");
+            exibirModal("Sucesso!", "Cadastro realizado com sucesso! Faça o login.", "../paginas/login.html");
         }
     </script>
 
