@@ -1,0 +1,11 @@
+Cadastrar as receitas que já existem no rotina_dieta.html
+ex: Vitamina Proteica, Macarrão Integral, Omelete Reforçado etc
+
+Relacionar cada receita ao objetivo
+Ganhar massa, Emagrecer ou Melhorar alimentação
+
+Depois mexer no dieta.php/gravar_dieta.php
+para salvar no banco aquilo que hoje está indo para localStorage()
+
+Por último, alterar rotina_dieta.php
+para buscar as receitas do banco em vez de deixar tudo fixo no JavaScript
