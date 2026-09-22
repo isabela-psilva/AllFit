@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    include "conexao.php";
+
     if (!isset($_SESSION["id_usuario"])) {
         header("Location: login.php");
         exit;
@@ -18,377 +20,959 @@
     if (isset($_GET["titulo"])) {
         $titulo = $_GET["titulo"];
     }
+
+    /*
+     * Busca todas as restrições cadastradas no banco.
+     */
+    $sql_restricoes = mysql_query("
+        SELECT id_restricao, nome, categoria
+        FROM restricoes
+        ORDER BY categoria, nome
+    ");
+
+    if (!$sql_restricoes) {
+        die("Erro ao buscar restrições: " . mysql_error());
+    }
 ?>
 
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <title>Dieta</title>
-        <link rel="stylesheet" href="../estilos/Base_Style.css">
-        <script src="../script/script.js"></script>
-        <script>
-            const usuarioLogadoEmail = localStorage.getItem('usuarioLogado');
-            const usuario = usuarioLogadoEmail ? JSON.parse(localStorage.getItem(usuarioLogadoEmail)) : null;
 
-            if (!usuario) {
-                exibirModal("Erro!", "O usuário não está logado. Faça login para continuar.", "../paginas/login.html");
+<head>
+
+<meta charset="UTF-8">
+
+<title>Dieta</title>
+
+<link rel="stylesheet" href="../estilos/Base_Style.css">
+
+<script src="../script/script.js"></script>
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+
+        <img
+            width="100px"
+            src="../imagens/logo 1.png"
+            alt="AllFit"
+        >
+
+    </div>
+
+    <nav>
+
+        <a href="dashboard.php">
+            Início
+        </a>
+
+        <a href="configuracao.php">
+            Configurações
+        </a>
+
+        <a href="logout.php">
+            Sair
+        </a>
+
+    </nav>
+
+</header>
+
+
+<section class="banner" id="main">
+
+    <h1>
+        Crie uma dieta
+        <i>
+            <span class="title-glow">
+                personalizada
+            </span>
+        </i>
+    </h1>
+
+    <p>
+        Dieta criada sob medida para você.
+    </p>
+
+</section>
+
+
+<section class="fundo-dieta">
+
+    <div class="form-dieta">
+
+        <div class="formulario">
+
+            <form
+                name="frm_dieta"
+                action="gravar_dieta.php"
+                method="POST"
+            >
+
+                <section class="center-form">
+
+                    <h2>
+                        Restrições e Metas
+                    </h2>
+
+                    <br>
+
+
+                    <!-- ================================= -->
+                    <!-- RESTRIÇÕES ALIMENTARES              -->
+                    <!-- ================================= -->
+
+                    <label>
+                        Você possui alergias ou intolerâncias?
+                    </label>
+
+                    <br>
+
+                    <input
+                        type="radio"
+                        name="tem_restricao"
+                        data-target="listaRestricoes"
+                        value="sim"
+                    >
+                    Sim
+
+                    <input
+                        type="radio"
+                        name="tem_restricao"
+                        data-target="listaRestricoes"
+                        value="nao"
+                    >
+                    Não
+
+
+                    <section
+                        id="listaRestricoes"
+                        style="display: none;"
+                    >
+
+                        <br>
+
+                        <?php
+
+                            /*
+                             * Mostra apenas as restrições
+                             * da categoria Alimentar.
+                             */
+
+                            mysql_data_seek(
+                                $sql_restricoes,
+                                0
+                            );
+
+                            while (
+                                $restricao =
+                                mysql_fetch_assoc(
+                                    $sql_restricoes
+                                )
+                            ) {
+
+                                if (
+                                    $restricao["categoria"]
+                                    == "Alimentar"
+                                ) {
+
+                        ?>
+
+                            <input
+                                type="checkbox"
+                                name="restricoes[]"
+                                value="<?php
+                                    echo $restricao["id_restricao"];
+                                ?>"
+                            >
+
+                            <?php
+                                echo htmlspecialchars(
+                                    $restricao["nome"]
+                                );
+                            ?>
+
+                            <br>
+
+                        <?php
+
+                                }
+
+                            }
+
+                        ?>
+
+                    </section>
+
+
+                    <br>
+                    <br>
+
+
+                    <!-- ================================= -->
+                    <!-- OUTRAS RESTRIÇÕES                   -->
+                    <!-- ================================= -->
+
+                    <label>
+                        Possui restrição por algum outro motivo?
+                    </label>
+
+                    <br>
+
+                    <input
+                        type="radio"
+                        name="tem_restricao_plus"
+                        data-target="listaRestricoesPlus"
+                        value="sim"
+                    >
+                    Sim
+
+                    <input
+                        type="radio"
+                        name="tem_restricao_plus"
+                        data-target="listaRestricoesPlus"
+                        value="nao"
+                    >
+                    Não
+
+
+                    <br>
+                    <br>
+
+
+                    <section
+                        id="listaRestricoesPlus"
+                        style="display: none;"
+                    >
+
+                        <?php
+
+                            /*
+                             * Mostra as restrições que não
+                             * pertencem à categoria Alimentar.
+                             */
+
+                            mysql_data_seek(
+                                $sql_restricoes,
+                                0
+                            );
+
+                            while (
+                                $restricao =
+                                mysql_fetch_assoc(
+                                    $sql_restricoes
+                                )
+                            ) {
+
+                                if (
+                                    $restricao["categoria"]
+                                    == "Dieta"
+                                ) {
+
+                        ?>
+
+                            <input
+                                type="checkbox"
+                                name="restricoes[]"
+                                value="<?php
+                                    echo $restricao["id_restricao"];
+                                ?>"
+                            >
+
+                            <?php
+                                echo htmlspecialchars(
+                                    $restricao["nome"]
+                                );
+                            ?>
+
+                            <br>
+
+                        <?php
+
+                                }
+
+                            }
+
+                        ?>
+
+
+                        <br>
+                        <br>
+
+
+                        <label>
+                            Quais alimentos você não pode consumir?
+                        </label>
+
+                        <br>
+                        <br>
+
+                        <textarea
+                            class="form-item"
+                            name="alimentos_nao_consumidos"
+                            placeholder="Digite aqui os alimentos que você não pode consumir"
+                            cols="80"
+                            rows="4"
+                        ></textarea>
+
+                    </section>
+
+
+                    <br>
+
+
+                    <!-- ================================= -->
+                    <!-- VALOR                              -->
+                    <!-- ================================= -->
+
+                    <label>
+                        Quanto você pretende gastar?
+                    </label>
+
+                    <br>
+                    <br>
+
+                    <input
+                        class="form-item"
+                        name="txt_valor"
+                        type="number"
+                        placeholder="Insira o valor em reais"
+                        min="10"
+                        max="99999"
+                        step="0.01"
+                    >
+
+
+                    <br>
+                    <br>
+
+
+                    <!-- ================================= -->
+                    <!-- GRUPO ALIMENTAR                    -->
+                    <!-- ================================= -->
+
+                    <label>
+                        Em qual grupo alimentar a dieta é focada?
+                    </label>
+
+                    <br>
+                    <br>
+
+                    <select
+                        class="form-item"
+                        name="grupo_alimentar"
+                        required
+                    >
+
+                        <option
+                            value=""
+                            disabled
+                            selected
+                            hidden
+                        >
+                            Selecione uma opção
+                        </option>
+
+                        <option value="Grãos">
+                            Grãos
+                        </option>
+
+                        <option value="Carboidratos">
+                            Carboidratos
+                        </option>
+
+                        <option value="Proteínas">
+                            Proteínas
+                        </option>
+
+                        <option value="Laticínios">
+                            Laticínios
+                        </option>
+
+                        <option value="Todos os grupos">
+                            Todos os grupos
+                        </option>
+
+                    </select>
+
+
+                    <br>
+                    <br>
+
+
+                    <!-- ================================= -->
+                    <!-- CALORIAS                           -->
+                    <!-- ================================= -->
+
+                    <label>
+                        Defina uma meta diária de calorias consumidas:
+                    </label>
+
+                    <br>
+                    <br>
+
+                    <input
+                        class="form-item"
+                        name="txt_calorias"
+                        type="number"
+                        placeholder="Insira a meta de calorias"
+                        min="100"
+                        max="99999"
+                    >
+
+
+                    <br>
+                    <br>
+
+
+                    <!-- ================================= -->
+                    <!-- HORÁRIOS                           -->
+                    <!-- ================================= -->
+
+                    <h3>
+                        Rotina Alimentar
+                    </h3>
+
+                    <label>
+                        Quais os horários das suas refeições?
+                    </label>
+
+                    <br>
+                    <br>
+
+                    <p>
+                        Café:
+
+                        <input
+                            class="form-item"
+                            name="hora_cafe"
+                            type="time"
+                        >
+                    </p>
+
+                    <p>
+                        Almoço:
+
+                        <input
+                            class="form-item"
+                            name="hora_almoco"
+                            type="time"
+                        >
+                    </p>
+
+                    <p>
+                        Janta:
+
+                        <input
+                            class="form-item"
+                            name="hora_janta"
+                            type="time"
+                        >
+                    </p>
+
+
+                    <br>
+
+
+                    <!-- ================================= -->
+                    <!-- CICLO                               -->
+                    <!-- ================================= -->
+
+                    <label>
+                        Quanto tempo deve durar o ciclo da dieta?
+                    </label>
+
+                    <br>
+                    <br>
+
+                    <select
+                        class="form-item"
+                        name="ciclo"
+                        required
+                    >
+
+                        <option
+                            value=""
+                            disabled
+                            selected
+                            hidden
+                        >
+                            Selecione uma opção
+                        </option>
+
+                        <option value="Uma semana">
+                            Uma semana
+                        </option>
+
+                        <option value="Um mês">
+                            Um mês
+                        </option>
+
+                        <option value="Quatro meses">
+                            Quatro meses
+                        </option>
+
+                    </select>
+
+
+                    <br>
+                    <br>
+
+
+                    <!-- ================================= -->
+                    <!-- SUPLEMENTO                          -->
+                    <!-- ================================= -->
+
+                    <label>
+                        Você utiliza algum suplemento alimentar?
+                    </label>
+
+                    <br>
+                    <br>
+
+                    <input
+                        type="radio"
+                        name="usa_suplemento"
+                        data-target="textoSuplemento"
+                        value="sim"
+                    >
+                    Sim
+
+                    <input
+                        type="radio"
+                        name="usa_suplemento"
+                        data-target="textoSuplemento"
+                        value="nao"
+                    >
+                    Não
+
+
+                    <br>
+                    <br>
+
+
+                    <section
+                        id="textoSuplemento"
+                        style="display: none;"
+                    >
+
+                        <input
+                            class="form-item"
+                            type="text"
+                            name="suplemento"
+                            placeholder="Digite o suplemento alimentar utilizado"
+                            maxlength="100"
+                        >
+
+                    </section>
+
+
+                    <br>
+
+
+                    <!-- ================================= -->
+                    <!-- BOTÕES                              -->
+                    <!-- ================================= -->
+
+                    <input
+                        class="primary-button"
+                        name="btn_confirmar"
+                        type="button"
+                        value="Finalizar"
+                        onclick="Confirmar()"
+                    >
+
+                    <br>
+                    <br>
+
+                    <input
+                        class="primary-button"
+                        name="btn_cancelar"
+                        type="button"
+                        value="Cancelar"
+                        onclick="Cancelar()"
+                    >
+
+
+                    <!-- ================================= -->
+                    <!-- MODAL                               -->
+                    <!-- ================================= -->
+
+                    <div
+                        id="meuModal"
+                        class="modal-container"
+                        style="display: none;"
+                    >
+
+                        <div class="modal-box">
+
+                            <h2
+                                id="modalTitulo"
+                                style="margin-top: 0;"
+                            >
+                                Título
+                            </h2>
+
+                            <br>
+
+                            <p id="modalTexto">
+                                Mensagem da operação.
+                            </p>
+
+                            <input
+                                type="button"
+                                id="btnModalOk"
+                                class="primary-button"
+                                value="Ok"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <p>
+        AllFit © 2026
+    </p>
+
+</footer>
+
+
+<script>
+
+    /*
+     * Mostra/esconde as opções adicionais
+     * dos radio buttons.
+     */
+
+    document.addEventListener(
+        "change",
+        function(e) {
+
+            const radio = e.target;
+
+            if (
+                !radio.matches(
+                    'input[type="radio"][data-target]'
+                )
+            ) {
+                return;
+            }
+
+            const groupName = radio.name;
+
+            const targetId =
+                radio.dataset.target;
+
+            const target =
+                document.getElementById(targetId);
+
+            if (!target) {
+                return;
+            }
+
+            const checkedRadio =
+                document.querySelector(
+                    `input[name="${groupName}"]:checked`
+                );
+
+            if (
+                checkedRadio &&
+                checkedRadio.value === "sim"
+            ) {
+
+                target.style.display = "block";
+
             }
             else {
 
-                // Isso aqui é 300 de QI
-                const editando = new URLSearchParams(window.location.search).get("editar");
-    
-    
-    
-                // Seria interessante preencher o formulário com os dados antigos quando carregar a página.
-                // OBS: estou com preguiça no momento.
-    
-    
-    
-    
-    
-                // Ele só direciona pra outra página se já tiver preenchido E se não estiver editando.
-                if (localStorage.getItem(`dieta_${usuarioLogadoEmail}`) !== null && !editando) {
-                    // Se existir, redireciona pra página de dados da dieta já que ele já preencheu o form.
-                    window.location.href = '../paginas/rotina_dieta.html';
-                }
+                target.style.display = "none";
+
             }
-        </script>
-    </head>
-    <body>
-        <header>
-            <div class="logo"><img width="100px" src="../imagens/logo 1.png" alt="AllFit"></div>
-            <nav>
-                <a href="../paginas/dashboard.html">Início</a>
-                <a href="../paginas/configuracao.html">Configurações</a>
-                <a href="../index.html">Sair</a>
-            </nav>
-        </header>
-        <section class="banner" id="main">
-            <h1>Crie uma dieta <i><span class="title-glow">personalizada</span></i></h1>
-            <p>Dieta criada sob medida para você.</p>
-        </section>
-        <section class="fundo-dieta">
-            <div class="form-dieta">
-                <div class="formulario">
-                    <form name="frm_dieta">
-                        <section class="center-form">
-                            <h2>Restrições e Metas</h2>
-                            <br>
-                            <label>Você possui alergias ou intolerâncias?</label> 
-                            <br>
 
-                            <input type="radio" name="tem_restricao" data-target="listaRestricoes" value="sim"> Sim
-                            <input type="radio" name="tem_restricao" data-target="listaRestricoes" value="nao"> Não
+        }
+    );
 
-                            <section id="listaRestricoes" style="display: none;">
-                                <br>
-                                <input type="checkbox" value="Laticínios">Laticínios <br>
-                                <input type="checkbox" value="Glúten">Glúten <br>
-                                <input type="checkbox" value="Oleaginosas">Oleaginosas <br>
-                                <input type="checkbox" value="Leguminosas">Leguminosas <br>
-                                <input type="checkbox" value="Frutos do mar">Frutos do mar <br>
-                                <input type="checkbox" value="Ovos">Ovos <br>
-                                <input type="checkbox" value="Outros">Outros <br>
-                            </section>
-                            <br>
-                            <br>
-                            <label>Possui restrição por algum outro motivo?</label>
-                            <br>
 
-                            <input type="radio" name="tem_restricao_plus" data-target="listaRestricoesPlus" value="sim"> Sim
-                            <input type="radio" name="tem_restricao_plus" data-target="listaRestricoesPlus" value="nao"> Não
+    /*
+     * Validação do formulário.
+     */
 
-                            <br>
-                            <br>
-                            <section id="listaRestricoesPlus" style="display: none;">
-                                <input type="checkbox" value="vegano">Sou vegano(a) <br>
-                                <input type="checkbox" value="vegetariano">Sou vegetariano(a) <br>
-                                <input type="checkbox" value="diabético">Sou diabético(a) <br>
-                                <input type="checkbox" value="hipertenso">Sou hipertenso(a) <br>
-                                <input type="checkbox" value="religiosos">Por motivos religiosos <br>
-                                <input type="checkbox" value="outro">Tenho alguma restrição <br>
-                                <!-- <input type="checkbox">não tenho outras restrições <br> -->
-                                <br>
-                                <br>
-                                <label>Quais alimentos você não pode consumir?</label><br> 
-                                <br>
-                                <textarea class="form-item" placeholder="Digite aqui os alimentos que você não pode consumir" cols="80" rows="4"></textarea> 
-                            </section>
-                            <br>
-                            
-                            <label>Quanto você pretende gastar?</label><br>
-                            <br>
-                            <input class="form-item" name="txt_valor" type="number" placeholder="Insira o valor em reais" min="10" max="99999" size="20">
-                            <br>
-                            <br>
-                            <label>Em qual grupo alimentar a dieta é focada?</label><br> 
-                            <br>
-                            <select class="form-item" name="grupo_alimentar" required>
-                                <option value="" disabled selected hidden>Selecione uma opção</option>
-                                <option>Grãos</option>
-                                <option>Carboidratos</option>
-                                <option>Proteínas</option>
-                                <option>Laticínios</option>
-                                <option>Todos os grupos</option>
-                            </select>
-                            <br>
-                            <br>
-                            <label>Defina uma meta diária de calorias consumidas:</label><br> 
-                            <br>
-                            <input class="form-item" name="txt_calorias" type="number" placeholder="Insira a meta de calorias" min="100" max="99999" size="20">            
-                    
-                            <br>
-                    
-                            <h3>Rotina Alimentar</h3>
-                            <label>Quais os horários das suas refeições?</label><br>
-                            <br>
-                            <p>Café: <input class="form-item" name="hora_cafe" type="time" placeholder="Horário" size="10" maxlength="5"></p>
-                            <p>Almoço: <input class="form-item" name="hora_almoco" type="time" placeholder="Horário" size="10" maxlength="5"></p>
-                            <p>Janta: <input class="form-item" name="hora_janta" type="time" placeholder="Horário" size="10" maxlength="5"></p>
-                            <br>
-                            <label>Quanto tempo deve durar o ciclo da dieta?</label><br>
-                            <br>
-                            <select class="form-item" name="ciclo_dieta" required>
-                                <option value="" disabled selected hidden>Selecione uma opção</option>
-                                <option>Uma semana</option>
-                                <option>Um mês</option>
-                                <option>Quatro meses</option>
-                            </select>
-                            <br>
-                            <br>
-                            <label>Você utiliza algum suplemento alimentar?</label><br> 
-                            <br>
+    function Confirmar() {
 
-                            <input type="radio" name="usa_suplemento" data-target="textoSuplemento" value="sim"> Sim
-                            <input type="radio" name="usa_suplemento" data-target="textoSuplemento" value="nao"> Não
+        const restricao =
+            document.querySelector(
+                'input[name="tem_restricao"]:checked'
+            );
 
-                            <br>
-                            <br>
-                            <section class="hidden-list" id="textoSuplemento" style="display: none;">
-                                <input class="form-item" type="text" placeholder="Digite o suplemento alimentar utilizado" maxlength="30" size="32">       
-                            </section>
-                            <br>
-                            <input class="primary-button" name="btn_confirmar" type="button" value="Finalizar" onClick="Confirmar()"><br>
-                            <br>
-                            <input class="primary-button" name="btn_cancelar" type="button" value="Cancelar" onClick="Cancelar()"> 
-                            <div id="meuModal" class="modal-container" style="display: none;">
-                                <div class="modal-box">
-                                    <h2 id="modalTitulo" style="margin-top: 0;">Título</h2>
-                                    <br><p></p>
-                                    <p id="modalTexto">Mensagem da operação.</p>
-                                    <input type="button" id="btnModalOk" class="primary-button" value="Ok">
-                                </div>
-                            </div>  
-                        </section>
-                    </form>     
-                </div>
-            </div>
-        </section>
-        <footer>
-         <p>AllFit © 2026</p>
-        </footer>
-    </body>
+        const restricaoPlus =
+            document.querySelector(
+                'input[name="tem_restricao_plus"]:checked'
+            );
+
+        const suplemento =
+            document.querySelector(
+                'input[name="usa_suplemento"]:checked'
+            );
+
+
+        const valor =
+            document.frm_dieta.txt_valor.value;
+
+        const grupo =
+            document.frm_dieta.grupo_alimentar.value;
+
+        const calorias =
+            document.frm_dieta.txt_calorias.value;
+
+        const cafe =
+            document.frm_dieta.hora_cafe.value;
+
+        const almoco =
+            document.frm_dieta.hora_almoco.value;
+
+        const janta =
+            document.frm_dieta.hora_janta.value;
+
+        const ciclo =
+            document.frm_dieta.ciclo.value;
+
+
+        /*
+         * Verifica os radio buttons.
+         */
+
+        if (!restricao) {
+
+            exibirModal(
+                "Atenção!",
+                "Selecione se possui alergias ou intolerâncias."
+            );
+
+            return;
+        }
+
+
+        if (!restricaoPlus) {
+
+            exibirModal(
+                "Atenção!",
+                "Selecione se possui outras restrições."
+            );
+
+            return;
+        }
+
+
+        if (!suplemento) {
+
+            exibirModal(
+                "Atenção!",
+                "Selecione se utiliza suplemento alimentar."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Verifica os campos obrigatórios.
+         */
+
+        if (valor === "") {
+
+            exibirModal(
+                "Atenção!",
+                "Informe quanto pretende gastar."
+            );
+
+            return;
+        }
+
+
+        if (grupo === "") {
+
+            exibirModal(
+                "Atenção!",
+                "Selecione um grupo alimentar."
+            );
+
+            return;
+        }
+
+
+        if (calorias === "") {
+
+            exibirModal(
+                "Atenção!",
+                "Informe sua meta diária de calorias."
+            );
+
+            return;
+        }
+
+
+        if (cafe === "") {
+
+            exibirModal(
+                "Atenção!",
+                "Informe o horário do café da manhã."
+            );
+
+            return;
+        }
+
+
+        if (almoco === "") {
+
+            exibirModal(
+                "Atenção!",
+                "Informe o horário do almoço."
+            );
+
+            return;
+        }
+
+
+        if (janta === "") {
+
+            exibirModal(
+                "Atenção!",
+                "Informe o horário da janta."
+            );
+
+            return;
+        }
+
+
+        if (ciclo === "") {
+
+            exibirModal(
+                "Atenção!",
+                "Selecione o ciclo da dieta."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Validação do valor.
+         */
+
+        if (
+            Number(valor) < 10 ||
+            Number(valor) > 99999
+        ) {
+
+            exibirModal(
+                "Erro!",
+                "Valor em dinheiro inválido!",
+                null,
+                document.frm_dieta.txt_valor
+            );
+
+            document.frm_dieta.txt_valor.value = "";
+
+            return;
+        }
+
+
+        /*
+         * Validação das calorias.
+         */
+
+        if (
+            Number(calorias) < 100 ||
+            Number(calorias) > 99999
+        ) {
+
+            exibirModal(
+                "Erro!",
+                "Meta de calorias inválida!",
+                null,
+                document.frm_dieta.txt_calorias
+            );
+
+            document.frm_dieta.txt_calorias.value = "";
+
+            return;
+        }
+
+
+        /*
+         * Tudo certo.
+         * Envia para gravar_dieta.php.
+         */
+
+        document.frm_dieta.submit();
+
+    }
+
+
+    /*
+     * Cancelar.
+     */
+
+    function Cancelar() {
+
+        exibirModal(
+            "Cancelado",
+            "Geração de dieta cancelada.",
+            "dashboard.php"
+        );
+
+    }
+
+</script>
+
+
+<?php if ($mensagem != "") { ?>
+
     <script>
-        document.addEventListener("change", (e) => {
-        const radio = e.target;
 
-        if (!radio.matches('input[type="radio"][data-target]')) return;
-
-        const groupName = radio.name;
-        const targetId = radio.dataset.target;
-        const target = document.getElementById(targetId);
-
-        if (!target) return;
-
-        // pega o radio selecionado do grupo
-        const checkedRadio = document.querySelector(`input[name="${groupName}"]:checked`);
-
-        if (checkedRadio && checkedRadio.value === "sim") {
-            target.style.display = "block";
-        } 
-        else {
-            target.style.display = "none";
-        }
-        });
-
-        function Confirmar() {
-
-            // Radios
-            const restricao = document.querySelector('input[name="tem_restricao"]:checked');
-            const restricaoPlus = document.querySelector('input[name="tem_restricao_plus"]:checked');
-            const suplemento = document.querySelector('input[name="usa_suplemento"]:checked');
-
-            // Inputs
-            const valor = document.frm_dieta.txt_valor.value;
-            const grupo = document.frm_dieta.grupo_alimentar.value;
-            const calorias = document.frm_dieta.txt_calorias.value;
-
-            const cafe = document.frm_dieta.hora_cafe.value;
-            const almoco = document.frm_dieta.hora_almoco.value;
-            const janta = document.frm_dieta.hora_janta.value;
-
-            const ciclo = document.frm_dieta.ciclo_dieta.value;
-
-            // Verificação
-            if (
-                restricao &&
-                restricaoPlus &&
-                valor !== "" &&
-                grupo !== "" &&
-                calorias !== "" &&
-                cafe !== "" &&
-                almoco !== "" &&
-                janta !== "" &&
-                ciclo !== "" &&
-                suplemento
-            ) {
-
-                // Validação
-                if (
-                    valor > 9 &&
-                    valor < 100000 &&
-                    calorias > 99 &&
-                    calorias < 100000
-                ) {
-
-                    // =========================
-                    // PEGAR CHECKBOXES
-                    // =========================
-
-                    const restricoes = [
-                        ...document.querySelectorAll('#listaRestricoes input[type="checkbox"]:checked')
-                    ].map(c => c.value);
-
-                    const restricoesExtras = [
-                        ...document.querySelectorAll('#listaRestricoesPlus input[type="checkbox"]:checked')
-                    ].map(c => c.value);
-
-                    // =========================
-                    // PEGAR TEXTAREA
-                    // =========================
-
-                    const alimentosNaoConsumidos =
-                        document.querySelector('#listaRestricoesPlus textarea').value;
-
-                    // =========================
-                    // PEGAR SUPLEMENTO
-                    // =========================
-
-                    let nomeSuplemento = "";
-
-                    if (suplemento.value === "sim") {
-
-                        nomeSuplemento =
-                            document.querySelector('#textoSuplemento input').value;
-                    }
-
-                    // =========================
-                    // USUÁRIO LOGADO
-                    // =========================
-
-                    const emailLogado =
-                        localStorage.getItem("usuarioLogado");
-
-                    // =========================
-                    // OBJETO DIETA
-                    // =========================
-
-                    const dieta = {
-
-                        emailUsuario: emailLogado,
-
-                        possuiRestricao:
-                            restricao.value === "sim",
-
-                        restricoes,
-
-                        possuiRestricaoExtra:
-                            restricaoPlus.value === "sim",
-
-                        restricoesExtras,
-
-                        alimentosNaoConsumidos,
-
-                        valorMaximo: Number(valor),
-
-                        grupoAlimentar: grupo,
-
-                        metaCalorias: Number(calorias),
-
-                        horarios: {
-                            cafe,
-                            almoco,
-                            janta
-                        },
-
-                        ciclo,
-
-                        usaSuplemento:
-                            suplemento.value === "sim",
-
-                        suplemento: nomeSuplemento
-                    };
-
-                    // =========================
-                    // SALVAR
-                    // =========================
-
-                    localStorage.setItem(
-                        `dieta_${emailLogado}`,
-                        JSON.stringify(dieta)
-                    );
-
-                    console.log(dieta);
-
-                    exibirModal(
-                        "Sucesso!",
-                        "Dieta gerada com sucesso!",
-                        "../paginas/rotina_dieta.html"
-                    );
-
-                } else {
-
-                    if (valor < 10 || valor > 99999) {
-
-                        exibirModal(
-                            "Erro!",
-                            "Valor em dinheiro inválido!",
-                            null,
-                            document.frm_dieta.txt_valor
-                        );
-
-                        document.frm_dieta.txt_valor.value = "";
-
-                    } else {
-
-                        if (calorias < 100 || calorias > 99999) {
-
-                            exibirModal(
-                                "Erro!",
-                                "Meta de calorias inválida!",
-                                null,
-                                document.frm_dieta.txt_calorias
-                            );
-
-                            document.frm_dieta.txt_calorias.value = "";
-                        }
-                    }
-                }
-            }
-        }
-
-        function Cancelar() {
-            exibirModal("Cancelado", "Geração de dieta cancelada", "../paginas/dashboard.html");    
-        }
-        
-        <?php if ($mensagem != "") { ?>
-            <script>
-                exibirModal(
-                    "<?php echo $titulo; ?>",
-                    "<?php echo $mensagem; ?>"
+        exibirModal(
+            "<?php
+                echo htmlspecialchars(
+                    $titulo,
+                    ENT_QUOTES,
+                    "UTF-8"
                 );
-            </script>
-        <?php } ?>
+            ?>",
+
+            "<?php
+                echo htmlspecialchars(
+                    $mensagem,
+                    ENT_QUOTES,
+                    "UTF-8"
+                );
+            ?>"
+        );
+
     </script>
+
+<?php } ?>
+
+</body>
+
 </html>
