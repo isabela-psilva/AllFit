@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    include "conexao.php";
+    include 'conexao.php';
 
     if (!isset($_SESSION["id_usuario"])) {
         header("Location: login.php");
@@ -31,7 +31,7 @@
     ");
 
     if (!$sql_restricoes) {
-        die("Erro ao buscar restrições: " . mysql_error());
+        die("Erro ao buscar restricoes: " . mysql_error());
     }
 ?>
 
